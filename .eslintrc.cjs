@@ -2,29 +2,45 @@ module.exports = {
   root: true,
   env: { browser: true, es2020: true },
   extends: [
-    "airbnb-typescript",
-    "airbnb/hooks",
-    "eslint:recommended",
-    'prettier/react',
-    "plugin:@typescript-eslint/recommended",
-    "plugin:@typescript-eslint/recommended-requiring-type-checking",
-    "plugin:react-hooks/recommended",
-    "plugin:prettier/recommended",
+    'airbnb-typescript',
+    'airbnb/hooks',
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended-type-checked',
+    'plugin:react/recommended',
+    'plugin:react/jsx-runtime',
+    'plugin:react-hooks/recommended',
+    'plugin:prettier/recommended',
   ],
-  ignorePatterns: ["dist", ".eslintrc.cjs"],
-  parser: "@typescript-eslint/parser",
+  ignorePatterns: ['dist', '.eslintrc.cjs'],
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaVersion: 'latest',
+    ecmaFeatures: {
+      jsx: true,
+    },
+    sourceType: 'module',
+    project: ['./tsconfig.json', './tsconfig.node.json'],
+    tsconfigRootDir: __dirname,
+  },
   plugins: [
-    "@typescript-eslint",
-    "react",
-    "react-hooks",
-    "jsx-a11y",
-    "import",
-    "react-refresh",
+    '@typescript-eslint',
+    'react',
+    'react-hooks',
+    'jsx-a11y',
+    'import',
+    'react-refresh',
   ],
   rules: {
-    "react-refresh/only-export-components": [
-      "warn",
+    'react-refresh/only-export-components': [
+      'warn',
       { allowConstantExport: true },
     ],
+    'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
+    '@typescript-eslint/no-shadow': 'off', // useState의 state를 jsx 내부에서 사용할 때 shadowing으로 잘못 간주하는 버그를 off하기 위함
+  },
+  settings: {
+    react: {
+      version: 'detect',
+    },
   },
 };
