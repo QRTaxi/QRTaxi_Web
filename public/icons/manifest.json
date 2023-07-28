@@ -1,0 +1,15 @@
+{
+  "short_name": "큐택",
+  "name": "QR코드로 간단하게 택시를 탄다! 큐택",
+  "icons": [
+    {
+      "src": "QT_amblem_squared_v1.svg",
+      "sizes": "974x974",
+      "type": "image/x-icon"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#FF8A00",
+  "background_color": "#FF8A00"
+}
