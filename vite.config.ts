@@ -6,4 +6,14 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 export default defineConfig({
   base: './',
   plugins: [react(), tsconfigPaths()],
+  resolve: {
+    alias: [
+      { find: '@', replacement: '/src' },
+      { find: '@assets', replacement: '/src/assets' },
+      { find: '@components', replacement: '/src/components' },
+      { find: '@pages', replacement: '/src/pages' },
+      { find: '@utils', replacement: '/src/utils' },
+      { find: '@styles', replacement: '/src/styles' },
+    ],
+  },
 });
