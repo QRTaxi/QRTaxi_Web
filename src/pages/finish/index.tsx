@@ -1,5 +1,6 @@
 import { LogoSymbolWhite } from '@/assets/images';
 import * as styles from './FinishStyle';
+import Button from '@/components/common/Button';
 
 const Finish = () => {
   return (
@@ -16,11 +17,12 @@ const Finish = () => {
       <styles.CameraButton>
         <LogoSymbolWhite />
       </styles.CameraButton>
-      <styles.CamBtnDescription>
-        큐택을 이용하시려면
+      <styles.CallBtnDescription>
+        새로 호출 하시려면
         <br />
-        버튼을 클릭해 QR코드를 스캔해보세요!
-      </styles.CamBtnDescription>
+        아래 버튼을 눌러주세요
+      </styles.CallBtnDescription>
+      <Button text="hi" />
     </styles.LandingWrapper>
   );
 };
