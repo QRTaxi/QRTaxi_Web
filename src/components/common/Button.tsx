@@ -9,7 +9,6 @@ interface IButton {
   borderRadius?: string;
   text: string;
   onClick?: () => void;
-  marginTop?: string;
   padding?: string;
   fontSize?: string;
   disabled?: boolean;
@@ -22,7 +21,6 @@ const StyledButton = styled.button<IButton>`
   color: ${({ color }) => color};
   font-weight: ${({ fontWeight }) => fontWeight};
   border-radius: ${({ borderRadius }) => borderRadius};
-  margin-top: ${({ marginTop }) => marginTop};
   padding: ${({ padding }) => padding};
   font-size: ${({ fontSize }) => fontSize};
   text-align: center;
@@ -42,7 +40,6 @@ const Button = ({
   borderRadius = '4px',
   text,
   onClick,
-  marginTop = '10px',
   padding = '10px 12px',
   fontSize,
   disabled,
@@ -57,7 +54,6 @@ const Button = ({
       borderRadius={borderRadius}
       text={text}
       onClick={onClick}
-      marginTop={marginTop}
       padding={padding}
       fontSize={fontSize}
       disabled={disabled}
