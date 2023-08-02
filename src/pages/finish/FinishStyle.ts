@@ -1,7 +1,6 @@
-import { theme } from '@/styles/theme';
 import { styled } from 'styled-components';
 
-export const LandingWrapper = styled.div`
+export const FinishWrapper = styled.div`
   display: flex;
   flex-direction: column;
 
@@ -9,11 +8,18 @@ export const LandingWrapper = styled.div`
 
   height: 100vh;
   gap: 1rem;
+  margin-top: 2.3rem;
 `;
 
 export const FirstSection = styled.section`
   width: 100%;
-  height: 30rem;
+  height: 80rem;
+  padding: 1.6rem;
+`;
+export const ContentWrapper = styled.section`
+  width: 100%;
+  padding-left: 2.3rem;
+  padding-right: 2.3rem;
 `;
 
 export const Contents = styled.header`
@@ -34,35 +40,23 @@ export const Contents = styled.header`
   }
 `;
 
-export const LandingTitle = styled.p`
-  color: ${({ theme }) => theme.colors.QT_Color_White}
-  font: ${({ theme }) => theme.fonts.QT_Title4_Pretendard_Bold_35}
+export const LottieSection = styled(ContentWrapper)`
+  height: 33%;
+  padding-left: 1.1rem;
+  padding-right: 1.4rem;
 `;
 
-export const CameraButton = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  width: 25rem;
-  height: 25rem;
-
-  border: none;
-  border-radius: 100%;
-  background-color: ${theme.colors.QT_Color_Orange.primary};
-
-  & > svg {
-    width: 60%;
-  }
-`;
-
-export const CamBtnDescription = styled.p`
-  ${({ theme }) => theme.fonts.QT_Body1_Pretendard_Medium_16}
+export const IconDescription = styled.p`
+  ${({ theme }) => theme.fonts.QT_Noto_B_Title_3}
+  color: ${({ theme }) => theme.colors.QT_Color_Gray_Black};
   text-align: center;
-`;
+  margin-top: 13.5rem;
+  line-height: 5.3rem;
+`; //margin-top으로 lottie 아이콘이랑 안겹쳐지게 함(임시)
 
 export const CallBtnDescription = styled.p`
   ${({ theme }) => theme.fonts.QT_Body1_Pretendard_Medium_16}
   color: ${({ theme }) => theme.colors.QT_Color_Gray_3};
   text-align: center;
+  line-height: 2rem;
 `;
