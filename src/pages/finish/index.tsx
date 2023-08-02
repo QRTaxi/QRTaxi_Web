@@ -1,17 +1,14 @@
 import { LogoSymbolWhite } from '@/assets/images';
 import * as styles from './FinishStyle';
 import Button from '@/components/common/Button';
+import Header from '@/components/common/Header';
 
 const Finish = () => {
   return (
     <styles.LandingWrapper>
       <styles.FirstSection>
         <styles.Contents>
-          <h1>
-            QR코드로 한 번에!
-            <br />
-            큐택
-          </h1>
+          <Header />
         </styles.Contents>
       </styles.FirstSection>
       <styles.CameraButton>
