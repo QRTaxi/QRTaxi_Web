@@ -12,6 +12,7 @@ interface IButton {
   padding?: string;
   fontSize?: string;
   disabled?: boolean;
+  border?: string | number;
 }
 
 const StyledButton = styled.button<IButton>`
@@ -28,10 +29,11 @@ const StyledButton = styled.button<IButton>`
     color: ${theme.colors.QT_Color_Gray_2};
     cursor: not-allowed;
   }
+  border: ${({ border }) => border};
 `;
 
 const Button = ({
-  width = '200px',
+  width = '100%',
   backgroundColor = theme.colors.QT_Color_Orange.primary,
   color = theme.colors.QT_Color_White,
   fontWeight = 600,
@@ -41,6 +43,7 @@ const Button = ({
   padding = '10px 12px',
   fontSize,
   disabled,
+  border = '0px',
 }: IButton) => {
   return (
     <StyledButton
@@ -54,6 +57,7 @@ const Button = ({
       padding={padding}
       fontSize={fontSize}
       disabled={disabled}
+      border={border}
     >
       {text}
     </StyledButton>
