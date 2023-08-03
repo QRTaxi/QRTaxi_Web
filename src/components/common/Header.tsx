@@ -37,7 +37,7 @@ const Header = ({
   backgroundColor = theme.colors.QT_Color_White,
   color = theme.colors.QT_Color_Gray_Black,
   fontWeight = 600,
-  text = '큐택 호출하기',
+  text = '큐택 호출하기 🚖',
   marginBottom = '20px',
   padding = '10px 20px',
   fontSize,
