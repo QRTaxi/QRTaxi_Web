@@ -2,7 +2,7 @@ import * as styles from './CancelStyle';
 import Button from '@/components/common/Button';
 import Header from '@/components/common/Header';
 import Lottie from 'lottie-react';
-import { Cancelled } from '@/assets/lottie';
+import { IcCancelled } from '@/assets/lottie';
 
 const Cancel = () => {
   return (
@@ -10,7 +10,7 @@ const Cancel = () => {
       <styles.FirstSection>
         <Header />
         <styles.LottieSection>
-          <Lottie animationData={Cancelled} />
+          <Lottie animationData={IcCancelled} />
         </styles.LottieSection>
         <styles.IconDescription>
           호출이
