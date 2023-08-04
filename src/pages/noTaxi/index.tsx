@@ -2,7 +2,7 @@ import * as styles from './NoTaxiStyle';
 import Button from '@/components/common/Button';
 import Header from '@/components/common/Header';
 import Lottie from 'lottie-react';
-import { Tears } from '@/assets/lottie';
+import { IcSadFace } from '@/assets/lottie';
 
 const NoTaxi = () => {
   return (
@@ -10,7 +10,7 @@ const NoTaxi = () => {
       <styles.FirstSection>
         <Header />
         <styles.LottieSection>
-          <Lottie animationData={Tears} />
+          <Lottie animationData={IcSadFace} />
         </styles.LottieSection>
         <styles.IconDescription>
           호출 가능한
