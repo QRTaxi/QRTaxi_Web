@@ -1,4 +1,4 @@
-export { default as IcTaxi } from './IcTaxi.json';
-export { default as IcHighFive } from './IcHighFive.json';
-export { default as IcCancelled } from './IcCancelled.json';
-export { default as IcTears } from './IcSadFace.json';
+export { default as Taxi } from './taxi.json';
+export { default as HighFive } from './highFive.json';
+export { default as Cancelled } from './cancelled.json';
+export { default as Tears } from './tears.json';

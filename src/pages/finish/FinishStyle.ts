@@ -52,7 +52,6 @@ export const IconDescription = styled.p`
   text-align: center;
   margin-top: 13.5rem;
   line-height: 5.3rem;
-  letter-spacing: -0.03em;
 `; //margin-top으로 lottie 아이콘이랑 안겹쳐지게 함(임시)
 
 export const CallBtnDescription = styled.p`
