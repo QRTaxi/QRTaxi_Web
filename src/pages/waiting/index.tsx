@@ -1,6 +1,6 @@
 import * as styles from './WaitingStyle';
 import Lottie from 'lottie-react';
-import { Taxi } from '@/assets/lottie';
+import { IcTaxi } from '@/assets/lottie';
 import Button from '@/components/common/Button';
 
 const Waiting = () => {
@@ -10,7 +10,7 @@ const Waiting = () => {
         <styles.TextContent>큐택 호출 중이에요.</styles.TextContent>
       </styles.TextSection>
       <styles.LottieSection>
-        <Lottie animationData={Taxi} />
+        <Lottie animationData={IcTaxi} />
       </styles.LottieSection>
       <styles.ButtonSection>
         <Button text="취소하기" />
