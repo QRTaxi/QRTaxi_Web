@@ -4,7 +4,25 @@ import * as styles from './BookingStyle';
 import Header from '@/components/common/Header';
 import Button from '@/components/common/Button';
 
+import { Params, useLoaderData } from 'react-router-dom';
+
+import UserApi from '@/utils/api/user';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { userQRIDState } from '@/utils/recoil/store';
+import { UserLocationInfo } from '@/utils/types/user';
+
+export function Loader({ params }: { params: Params }) {
+  const [userQRID, setUserQRID] = useRecoilState(userQRIDState);
+  if (params.qrID) {
+    setUserQRID(params.qrID);
+    return UserApi.getUserLocation(userQRID);
+  }
+  return null;
+}
+
 const Booking = () => {
+  const userLocationInfo = useLoaderData() as UserLocationInfo;
+  const userQRID = useRecoilValue(userQRIDState);
   const [phoneNum, setPhoneNum] = useState<number>();
 
   const Validation = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -21,7 +39,10 @@ const Booking = () => {
     return false;
   };
 
-  const handleSubmit = () => {};
+  const handleSubmit = () => {
+    const payload = { hashed_qr_id: userQRID, user_phone: phoneNum };
+    return payload;
+  };
 
   return (
     <styles.BookingWrapper>
@@ -31,7 +52,7 @@ const Booking = () => {
       <styles.SecondSection>
         <styles.SecondContent>
           <p>나의 현재 위치는</p>
-          <h1>한국외국어대학교 정문</h1>
+          <h1>{userLocationInfo.description}</h1>
         </styles.SecondContent>
         <styles.SecondContent>
           <p>전화번호를 입력해주세요.</p>
