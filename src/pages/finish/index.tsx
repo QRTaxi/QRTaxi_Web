@@ -2,7 +2,7 @@ import * as styles from './FinishStyle';
 import Button from '@/components/common/Button';
 import Header from '@/components/common/Header';
 import Lottie from 'lottie-react';
-import { IcHighFive } from '@/assets/lottie';
+import { HighFive } from '@/assets/lottie';
 
 const Finish = () => {
   return (
@@ -10,7 +10,7 @@ const Finish = () => {
       <styles.FirstSection>
         <Header />
         <styles.LottieSection>
-          <Lottie animationData={IcHighFive} />
+          <Lottie animationData={HighFive} />
         </styles.LottieSection>
         <styles.IconDescription>
           운행이
