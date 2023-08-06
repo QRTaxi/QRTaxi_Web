@@ -24,7 +24,7 @@ const NoTaxi = () => {
           <br />
           아래 버튼을 눌러주세요
         </styles.CallBtnDescription>
-        <Button text="택시 다시 호출하기" />
+        <Button fontSize="x-large" text="택시 다시 호출하기" />
       </styles.FirstSection>
     </styles.FinishWrapper>
   );
