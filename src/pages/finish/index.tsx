@@ -24,7 +24,7 @@ const Finish = () => {
           <br />
           아래 버튼을 눌러주세요
         </styles.CallBtnDescription>
-        <Button text="다른 택시 호출하기" />
+        <Button fontSize="x-large" text="다른 택시 호출하기" />
       </styles.FirstSection>
     </styles.FinishWrapper>
   );

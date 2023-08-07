@@ -1,10 +1,10 @@
-import * as styles from './NoTaxiStyle';
+import * as styles from './FailedStyle';
 import Button from '@/components/common/Button';
 import Header from '@/components/common/Header';
 import Lottie from 'lottie-react';
 import { IcSadFace } from '@/assets/lottie';
 
-const NoTaxi = () => {
+const Failed = () => {
   return (
     <styles.FinishWrapper>
       <styles.FirstSection>
@@ -24,10 +24,10 @@ const NoTaxi = () => {
           <br />
           아래 버튼을 눌러주세요
         </styles.CallBtnDescription>
-        <Button text="택시 다시 호출하기" />
+        <Button fontSize="x-large" text="택시 다시 호출하기" />
       </styles.FirstSection>
     </styles.FinishWrapper>
   );
 };
 
-export default NoTaxi;
+export default Failed;
