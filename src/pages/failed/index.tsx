@@ -1,10 +1,10 @@
-import * as styles from './NoTaxiStyle';
+import * as styles from './FailedStyle';
 import Button from '@/components/common/Button';
 import Header from '@/components/common/Header';
 import Lottie from 'lottie-react';
 import { IcSadFace } from '@/assets/lottie';
 
-const NoTaxi = () => {
+const Failed = () => {
   return (
     <styles.FinishWrapper>
       <styles.FirstSection>
@@ -30,4 +30,4 @@ const NoTaxi = () => {
   );
 };
 
-export default NoTaxi;
+export default Failed;

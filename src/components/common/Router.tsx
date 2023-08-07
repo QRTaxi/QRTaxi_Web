@@ -5,7 +5,7 @@ import Booking, { Loader as bookingLoader } from '@/pages/booking';
 import Waiting from '@/pages/waiting';
 import Cancel from '@/pages/cancel';
 import Finish from '@/pages/finish';
-import NoTaxi from '@/pages/noTaxi';
+import Failed from '@/pages/failed';
 import Success from '@/pages/success';
 
 const Router = createBrowserRouter([
@@ -27,8 +27,8 @@ const Router = createBrowserRouter([
     element: <Cancel />,
   },
   {
-    path: 'notaxi',
-    element: <NoTaxi />,
+    path: 'failed',
+    element: <Failed />,
   },
   {
     path: 'finish',
