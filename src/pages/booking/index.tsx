@@ -11,10 +11,11 @@ import {
   useParams,
 } from 'react-router-dom';
 
-import { useRecoilState } from 'recoil';
-import { userQRIDState } from '@/utils/recoil/store';
-import { UserLocationResponse, UserQRID } from '@/utils/types/user';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import { userQRIDState, userStatus } from '@/utils/recoil/store';
+import { UserLocationResponse, UserQRID, UserStatus } from '@/utils/types/user';
 import UserApi from '@/utils/api/user';
+import { initWebSocket } from '@/utils/api/webSocket';
 
 export async function Loader({ params }: { params: Params }) {
   return UserApi.getUserLocation(params.qrID as string);
@@ -25,6 +26,7 @@ const Booking = () => {
   const { qrID } = useParams();
   const [userQRID, setUserQRID] = useRecoilState<UserQRID>(userQRIDState);
   const [phoneNum, setPhoneNum] = useState<string>();
+  const setUserStatus = useSetRecoilState(userStatus);
   const navigate = useNavigate();
 
   useLayoutEffect(() => {
@@ -54,8 +56,19 @@ const Booking = () => {
         user_phone: String(phoneNum),
       };
       const response = await UserApi.postUserInfo(payload);
-      // ws 들어갈 자리
-      if (response) navigate('/waiting');
+
+      if (response) {
+        const { hashed_assign_id, id, status } = response;
+        const data: UserStatus = {
+          hashed_assign_id,
+          id,
+          status: status as UserStatus['status'],
+        };
+        console.log(data);
+        setUserStatus(data);
+        initWebSocket(data.id, navigate);
+        navigate('/waiting');
+      }
     } catch (error) {
       console.error('Failed to submit user info:', error);
     }

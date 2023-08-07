@@ -20,7 +20,9 @@ export interface UserInfoResponse {
   hashed_assign_id: string;
 }
 
-export type DriverInfoPayload = UserInfoResponse['hashed_assign_id'];
+export type UserAssignID = UserInfoResponse['hashed_assign_id'];
+
+export type DriverInfoPayload = UserAssignID;
 
 export interface DriverInfoResponse {
   id: number;
@@ -33,17 +35,20 @@ export interface DriverInfoResponse {
   estimated_time: string;
 }
 
-export type CancelBookingPayload = UserInfoResponse['hashed_assign_id'];
+export type CancelBookingPayload = UserAssignID;
 
 export interface CancelBookingResponse {
   detail: string;
 }
-
-export type UserStatus =
-  | 'booking'
-  | 'waiting'
-  | 'success'
-  | 'riding'
-  | 'finish'
-  | 'cancel'
-  | 'deleted';
+export interface UserStatus {
+  hashed_assign_id: UserAssignID;
+  id: UserInfoResponse['id'];
+  status:
+    | 'booking'
+    | 'waiting'
+    | 'success'
+    | 'riding'
+    | 'failed'
+    | 'finish'
+    | 'cancel';
+}
