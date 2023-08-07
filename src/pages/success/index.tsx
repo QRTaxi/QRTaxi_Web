@@ -9,11 +9,13 @@ const Success = () => {
     <styles.FinishWrapper>
       <styles.FirstSection>
         <styles.TextButtonSection>
-          <Button
-            backgroundColor={theme.colors.QT_Color_White}
-            color={theme.colors.QT_Color_Gray_3}
-            text="호출 취소하기"
-          />
+          <>
+            <Button
+              backgroundColor={theme.colors.QT_Color_White}
+              color={theme.colors.QT_Color_Gray_3}
+              text="호출 취소하기"
+            />
+          </>
         </styles.TextButtonSection>
         <styles.TextSection>
           <styles.TextContent>호출 성공 !</styles.TextContent>
