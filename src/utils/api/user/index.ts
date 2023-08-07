@@ -9,12 +9,12 @@ import {
   CancelBookingResponse,
 } from '@/utils/types/user';
 import client from '../axios';
-import { AxiosResponse, isAxiosError } from 'axios';
+import { isAxiosError } from 'axios';
 
 class UserApi {
   static async getUserLocation(qrID: UserQRID) {
     try {
-      const response = await client.get<AxiosResponse<UserLocationResponse>>(
+      const response = await client.get<UserLocationResponse>(
         `/call/main/${qrID}`,
       );
       return response.data;
@@ -30,7 +30,7 @@ class UserApi {
 
   static async postUserInfo(payload: UserInfoPayload) {
     try {
-      const response = await client.post<AxiosResponse<UserInfoResponse>>(
+      const response = await client.post<UserInfoResponse>(
         `/call/main/${payload.hashed_qr_id}`,
         payload,
       );
@@ -47,7 +47,7 @@ class UserApi {
 
   static async getDriverInfo(hashed_assign_id: DriverInfoPayload) {
     try {
-      const response = await client.get<AxiosResponse<DriverInfoResponse>>(
+      const response = await client.get<DriverInfoResponse>(
         `/call/success/${hashed_assign_id}`,
       );
       return response.data;
@@ -63,7 +63,7 @@ class UserApi {
 
   static async postCancelBooking(payload: CancelBookingPayload) {
     try {
-      const response = await client.post<AxiosResponse<CancelBookingResponse>>(
+      const response = await client.post<CancelBookingResponse>(
         `/call/cancel/`,
         payload,
       );
