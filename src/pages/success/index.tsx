@@ -14,6 +14,7 @@ const Success = () => {
               backgroundColor={theme.colors.QT_Color_White}
               color={theme.colors.QT_Color_Gray_3}
               text="호출 취소하기"
+              padding="0.8rem"
             />
           </>
         </styles.TextButtonSection>
