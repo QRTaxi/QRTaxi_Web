@@ -13,8 +13,10 @@ export const initWebSocket = (
   id: UserStatus['id'],
   navigate: (path: string) => void,
 ) => {
-  const ws_scheme = window.location.protocol === 'https:' ? 'wss' : 'ws';
-  const ws_url = `${ws_scheme}://api.qrtaxi.kro.kr:8000/ws/call/${id}/`;
+  const port_num = 443;
+  const ws_url = `wss://${
+    import.meta.env.VITE_BASE_URL
+  }:${port_num}/ws/call/${id}/`;
 
   if (!socket) {
     console.log(ws_url);
