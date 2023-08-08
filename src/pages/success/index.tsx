@@ -3,8 +3,22 @@ import Button from '@/components/common/Button';
 import Lottie from 'lottie-react';
 import { IcSuccess, IcDriver } from '@/assets/lottie';
 import { theme } from '@/styles/theme';
+import { useState } from 'react';
+import Modal from '@/components/common/Modal';
 
 const Success = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+  const cancelModal = () => {
+    setIsModalOpen(false);
+  };
   return (
     <styles.FinishWrapper>
       <styles.FirstSection>
@@ -15,6 +29,13 @@ const Success = () => {
               color={theme.colors.QT_Color_Gray_3}
               text="호출 취소하기"
               padding="0.8rem"
+              onClick={openModal}
+            />
+            <Modal
+              isOpen={isModalOpen}
+              onClose={closeModal}
+              text="현재 기사님이 달려오고 있어요"
+              onCancel={cancelModal}
             />
           </>
         </styles.TextButtonSection>
