@@ -15,8 +15,6 @@ export const FirstSection = styled.section`
   width: 100%;
   height: 80rem;
   padding: 1.6rem;
-  align-items: center;
-  justify-content: center;
 `;
 export const ContentWrapper = styled.section`
   width: 100%;
@@ -54,22 +52,19 @@ export const TextContent = styled.p`
   font-size: 3.5rem;
   line-height: 131.2%;
   letter-spacing: -0.025em;
+
+  padding-bottom: 1.4rem;
 `;
 export const TextButtonSection = styled.section`
   display: flex;
   align-items: center;
-  float: right;
+  float: center;
 `;
 
 export const LottieSection = styled(ContentWrapper)`
   height: 33%;
-  padding-left: 5.1rem;
+  padding-left: 1.1rem;
   padding-right: 1.4rem;
-  padding-top: 2rem;
-  padding-bottom: 5rem;
-  align-items: center;
-  width: 90%;
-  float: center;
 `;
 
 export const IconDescription = styled.p`
@@ -82,13 +77,12 @@ export const IconDescription = styled.p`
 `; //margin-top으로 lottie 아이콘이랑 안겹쳐지게 함(임시)
 
 export const DriverSection = styled(ContentWrapper)`
-  height: 23%;
+  height: 33%;
   padding-left: 1rem;
   padding-right: 1.4rem;
   align-items: center;
   display: flex;
   justify-content: center;
-  padding-bottom: 3rem;
 `;
 
 export const DriverDescriptionSection = styled(ContentWrapper)`
@@ -118,10 +112,11 @@ export const DriverDescription = styled.p`
 `;
 
 export const CallBtnDescription = styled.p`
-  ${({ theme }) => theme.fonts.QT_Body1_Pretendard_Medium_16}
-  color: ${({ theme }) => theme.colors.QT_Color_Gray_3};
+  ${({ theme }) => theme.fonts.QT_Body2_Pretendard_Bold_16}
+  color: ${({ theme }) => theme.colors.QT_Color_Gray_2};
   text-align: center;
   line-height: 2rem;
+  margin-bottom: 3rem;
 `;
 
 export const DriverPic = styled(ContentWrapper)`

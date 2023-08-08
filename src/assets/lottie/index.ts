@@ -4,3 +4,4 @@ export { default as IcCancelled } from './IcCancelled.json';
 export { default as IcSadFace } from './IcSadFace.json';
 export { default as IcSuccess } from './IcSuccess.json';
 export { default as IcDriver } from './IcDriver.json';
+export { default as IcRiding } from './IcRiding.json';

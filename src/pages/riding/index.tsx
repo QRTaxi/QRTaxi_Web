@@ -1,25 +1,15 @@
-import * as styles from './SuccessStyle';
+import * as styles from './RidingStyle';
 import Button from '@/components/common/Button';
 import Lottie from 'lottie-react';
-import { IcSuccess, IcDriver } from '@/assets/lottie';
+import { IcDriver, IcRiding } from '@/assets/lottie';
 import { theme } from '@/styles/theme';
 
-const Success = () => {
+const Riding = () => {
   return (
     <styles.FinishWrapper>
       <styles.FirstSection>
-        <styles.TextButtonSection>
-          <>
-            <Button
-              backgroundColor={theme.colors.QT_Color_White}
-              color={theme.colors.QT_Color_Gray_3}
-              text="호출 취소하기"
-              padding="0.8rem"
-            />
-          </>
-        </styles.TextButtonSection>
         <styles.TextSection>
-          <styles.TextContent>호출 성공 !</styles.TextContent>
+          <styles.TextContent>탑승 중이에요 🚘</styles.TextContent>
         </styles.TextSection>
         <styles.DriverSection>
           <styles.DriverPic>
@@ -37,22 +27,25 @@ const Success = () => {
           </styles.DriverDescriptionSection>
         </styles.DriverSection>
         <styles.LottieSection>
-          <Lottie animationData={IcSuccess} />
+          <Lottie animationData={IcRiding} />
         </styles.LottieSection>
       </styles.FirstSection>
       <styles.FirstSection>
         <styles.CallBtnDescription>
-          출발지로 달려가는 중이에요 🚀
-          <br />
-          <br />
-          예상 시간: 00분
-          <br />
-          <br />
+          안전하게 목적지까지 모시고 있어요
         </styles.CallBtnDescription>
-        <Button fontSize="x-large" text="기사님과 전화 연결" />
+        <styles.TextButtonSection>
+          <>
+            <Button
+              backgroundColor={theme.colors.QT_Color_White}
+              color={theme.colors.QT_Color_Gray_3}
+              text="신고하기🚨"
+            />
+          </>
+        </styles.TextButtonSection>
       </styles.FirstSection>
     </styles.FinishWrapper>
   );
 };
 
-export default Success;
+export default Riding;

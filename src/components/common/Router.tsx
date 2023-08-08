@@ -7,6 +7,7 @@ import Cancel from '@/pages/cancel';
 import Finish from '@/pages/finish';
 import Failed from '@/pages/failed';
 import Success from '@/pages/success';
+import Riding from '@/pages/riding';
 
 const Router = createBrowserRouter([
   {
@@ -37,6 +38,10 @@ const Router = createBrowserRouter([
   {
     path: 'success',
     element: <Success />,
+  },
+  {
+    path: 'riding',
+    element: <Riding />,
   },
 ]);
 
