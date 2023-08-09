@@ -14,7 +14,7 @@ import UserApi from '@/utils/api/user';
 
 const Waiting = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const { id: assignID } = useRecoilValue(userStatus);
+  const { id: assign_id } = useRecoilValue(userStatus);
   const navigate = useNavigate();
 
   const toggleModal = (isModalOpen: boolean) => {
@@ -22,8 +22,8 @@ const Waiting = () => {
   };
 
   const cancelModal = () => {
-    console.log(assignID);
-    UserApi.postCancelBooking(assignID).catch((error: Error) =>
+    console.log(assign_id);
+    UserApi.postCancelBooking({ assign_id }).catch((error: Error) =>
       console.error('Failed to cancel booking: ', error),
     );
     navigate('/cancel');
