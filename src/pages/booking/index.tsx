@@ -11,7 +11,7 @@ import {
   useParams,
 } from 'react-router-dom';
 
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { userQRIDState, userStatus } from '@/utils/recoil/store';
 import { UserLocationResponse, UserQRID, UserStatus } from '@/utils/types/user';
 import UserApi from '@/utils/api/user';
@@ -26,7 +26,7 @@ const Booking = () => {
   const { qrID } = useParams();
   const [userQRID, setUserQRID] = useRecoilState<UserQRID>(userQRIDState);
   const [phoneNum, setPhoneNum] = useState<string>();
-  const setUserStatus = useSetRecoilState(userStatus);
+  const [UserStatus, setUserStatus] = useRecoilState(userStatus);
   const navigate = useNavigate();
 
   useLayoutEffect(() => {
@@ -64,8 +64,8 @@ const Booking = () => {
           id,
           status: status as UserStatus['status'],
         };
-        console.log(data);
         setUserStatus(data);
+        console.log(UserStatus);
         initWebSocket(data.id, navigate);
         navigate('/waiting');
       }
