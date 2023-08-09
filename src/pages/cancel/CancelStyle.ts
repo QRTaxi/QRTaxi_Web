@@ -59,6 +59,5 @@ export const CallBtnDescription = styled.p`
   ${({ theme }) => theme.fonts.QT_Body1_Pretendard_Medium_16}
   color: ${({ theme }) => theme.colors.QT_Color_Gray_3};
   text-align: center;
-  font-size: 2.4rem;
   margin-bottom: 1.6rem;
 `;
