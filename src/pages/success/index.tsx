@@ -19,6 +19,7 @@ const Success = () => {
   const cancelModal = () => {
     setIsModalOpen(false);
   };
+
   return (
     <styles.FinishWrapper>
       <styles.FirstSection>
@@ -34,8 +35,11 @@ const Success = () => {
             <Modal
               isOpen={isModalOpen}
               onClose={closeModal}
-              text="현재 기사님이 달려오고 있어요"
-              onCancel={cancelModal}
+              title="호출 취소"
+              text1="현재 기사님이 달려오고 있어요"
+              text2="정말 호출을 취소하시겠어요?"
+              action="호출 취소"
+              onAction={cancelModal}
             />
           </>
         </styles.TextButtonSection>
