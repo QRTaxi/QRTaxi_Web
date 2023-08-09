@@ -10,21 +10,16 @@ const Cancel = () => {
       <styles.FirstSection>
         <Header />
         <styles.LottieSection>
-          <Lottie animationData={IcCancelled} />
+          <Lottie animationData={IcCancelled} loop={false} />
         </styles.LottieSection>
-        <styles.IconDescription>
-          호출이
-          <br />
-          취소되었어요
-        </styles.IconDescription>
+        <styles.IconDescription>호출이 취소되었어요</styles.IconDescription>
       </styles.FirstSection>
       <styles.FirstSection>
         <styles.CallBtnDescription>
-          다시 호출 하시려면
-          <br />
-          아래 버튼을 눌러주세요
+          <p>다시 호출하시려면</p>
+          <p>아래 버튼을 눌러주세요</p>
         </styles.CallBtnDescription>
-        <Button fontSize="x-large" text="택시 다시 호출하기" />
+        <Button fontSize="x-large" padding="1.6rem" text="택시 다시 호출하기" />
       </styles.FirstSection>
     </styles.FinishWrapper>
   );
