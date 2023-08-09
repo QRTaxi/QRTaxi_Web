@@ -12,7 +12,11 @@ import {
 } from 'react-router-dom';
 
 import { useRecoilState, useSetRecoilState } from 'recoil';
-import { userPayloadState, userQRIDState } from '@/utils/recoil/store';
+import {
+  userPayloadState,
+  userQRIDState,
+  userStatus,
+} from '@/utils/recoil/store';
 import { UserLocationResponse, UserQRID } from '@/utils/types/user';
 import UserApi from '@/utils/api/user';
 import AssignUser from '@/utils/hooks/AssignUser';
@@ -26,6 +30,7 @@ const Booking = () => {
   const { qrID } = useParams();
   const [userQRID, setUserQRID] = useRecoilState<UserQRID>(userQRIDState);
   const [phoneNum, setPhoneNum] = useState<string>();
+  const setUserStatus = useSetRecoilState(userStatus);
   const setUserPayload = useSetRecoilState(userPayloadState);
   const navigate = useNavigate();
 
@@ -56,7 +61,7 @@ const Booking = () => {
     };
     setUserPayload(payload);
 
-    AssignUser({ payload, navigate }).catch((error: Error) => {
+    AssignUser({ payload, navigate, setUserStatus }).catch((error: Error) => {
       console.error('Failed to submit user info:', error);
     });
   };

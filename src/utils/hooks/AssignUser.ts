@@ -1,17 +1,18 @@
 import UserApi from '../api/user';
 import { initWebSocket } from '../api/webSocket';
-import { UserInfoPayload, UserStatus } from '../types/user';
-
-import { useSetRecoilState } from 'recoil';
-import { userStatus } from '../recoil/store';
+import { UserInfoPayload, UserStatus } from '@/utils/types/user';
 
 interface AssignUserProps {
   payload: UserInfoPayload;
   navigate: (path: string) => void;
+  setUserStatus: (arg: UserStatus) => void;
 }
 
-const AssignUser = async ({ payload, navigate }: AssignUserProps) => {
-  const setUserStatus = useSetRecoilState(userStatus);
+const AssignUser = async ({
+  payload,
+  navigate,
+  setUserStatus,
+}: AssignUserProps) => {
   const response = await UserApi.postUserInfo(payload);
 
   if (response) {
