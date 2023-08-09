@@ -21,6 +21,12 @@ export const initWebSocket = (
   if (!socket) {
     console.log(ws_url);
     socket = new WebSocket(ws_url);
+  } else {
+    if (socket.url !== ws_url) {
+      console.log('기존 소켓과의 연결을 끊고 새로운 소켓을 연결합니다.');
+      closeWebSocket();
+      socket = new WebSocket(ws_url);
+    }
   }
   socket.onopen = () => {
     console.log('websocket connected');
