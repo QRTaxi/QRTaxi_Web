@@ -16,7 +16,7 @@ const Cancel = () => {
   const handleReassign = () => {
     setUserStatus({ ...UserStatus, status: 'booking' });
 
-    AssignUser({ payload, navigate }).catch((error: Error) =>
+    AssignUser({ payload, navigate, setUserStatus }).catch((error: Error) =>
       console.error('Failed to submit user info:', error),
     );
   };
