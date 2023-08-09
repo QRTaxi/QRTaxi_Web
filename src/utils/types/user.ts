@@ -35,7 +35,7 @@ export interface DriverInfoResponse {
   estimated_time: string;
 }
 
-export type CancelBookingPayload = UserAssignID;
+export type CancelBookingPayload = UserInfoResponse['id'];
 
 export interface CancelBookingResponse {
   detail: string;
