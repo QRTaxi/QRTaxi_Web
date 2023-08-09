@@ -7,6 +7,7 @@ import { useState } from 'react';
 import Modal from '@/components/common/Modal';
 
 const Success = () => {
+  //호출 취소
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => {
@@ -19,6 +20,20 @@ const Success = () => {
   const cancelModal = () => {
     setIsModalOpen(false);
   };
+  //전화 연결
+  const [isCallOpen, setIsCallOpen] = useState(false);
+
+  const openCall = () => {
+    setIsCallOpen(true);
+  };
+
+  const closeCall = () => {
+    setIsCallOpen(false);
+  };
+  const makeCall = () => {
+    window.location.href = 'tel:01025799716';
+  };
+
   return (
     <styles.FinishWrapper>
       <styles.FirstSection>
@@ -34,8 +49,11 @@ const Success = () => {
             <Modal
               isOpen={isModalOpen}
               onClose={closeModal}
-              text="현재 기사님이 달려오고 있어요"
-              onCancel={cancelModal}
+              title="호출 취소"
+              text1="현재 기사님이 달려오고 있어요"
+              text2="정말 호출을 취소하시겠어요?"
+              action="호출 취소"
+              onAction={cancelModal}
             />
           </>
         </styles.TextButtonSection>
@@ -70,7 +88,20 @@ const Success = () => {
           <br />
           <br />
         </styles.CallBtnDescription>
-        <Button fontSize="x-large" text="기사님과 전화 연결" />
+        <Button
+          fontSize="x-large"
+          text="기사님과 전화 연결"
+          onClick={openCall}
+        />
+        <Modal
+          isOpen={isCallOpen}
+          onClose={closeCall}
+          title="전화 연결"
+          text1="기사님과 전화 연결을 원하시면"
+          text2="아래 통화 버튼을 누르세요"
+          action="통화"
+          onAction={makeCall}
+        />
       </styles.FirstSection>
     </styles.FinishWrapper>
   );

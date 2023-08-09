@@ -6,8 +6,11 @@ import { theme } from '@/styles/theme';
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
-  text?: string;
-  onCancel: () => void;
+  title: string;
+  text1: string;
+  text2?: string;
+  action: string;
+  onAction: () => void;
 }
 export const ContentWrapper = styled.section`
   width: 100%;
@@ -66,22 +69,30 @@ export const ModalBody = styled.p`
   color: ${({ theme }) => theme.colors.QT_Color_Gray_Black};
 `;
 
-const Modal: React.FC<ModalProps> = ({ isOpen, onClose, text, onCancel }) => {
+const Modal: React.FC<ModalProps> = ({
+  isOpen,
+  onClose,
+  title,
+  text1,
+  text2,
+  action,
+  onAction,
+}) => {
   return (
     <ModalWrapper>
       {isOpen && (
         <ModalOverlay>
           <ModalContent>
-            <ModalTitle>호출 취소</ModalTitle>
-            <ModalBody>{text}</ModalBody>
-            <ModalBody>정말 호출을 취소하시겠어요?</ModalBody>
+            <ModalTitle>{title}</ModalTitle>
+            <ModalBody>{text1}</ModalBody>
+            <ModalBody>{text2}</ModalBody>
             <ModalButtonSection>
               <Button
                 backgroundColor={theme.colors.QT_Color_White}
                 color={theme.colors.QT_Color_Red}
-                text="호출 취소"
+                text={action}
                 padding="0rem"
-                onClick={onCancel}
+                onClick={onAction}
                 fontSize="1.8rem"
               />
               <Button
