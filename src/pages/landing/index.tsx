@@ -3,7 +3,7 @@ import { LogoSymbolWhite } from '@/assets/images';
 import * as styles from './LandingStyle';
 
 const Landing = () => {
-  const [stream, setStream] = useState<MediaStream | null>(null); // 초기값을 null로 설정하고 타입을 명시적으로 지정합니다.
+  const [stream, setStream] = useState<MediaStream | null>(null);
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
   const handleCameraButtonClick = () => {
