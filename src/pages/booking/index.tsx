@@ -12,10 +12,14 @@ import {
 } from 'react-router-dom';
 
 import { useRecoilState, useSetRecoilState } from 'recoil';
-import { userQRIDState, userStatus } from '@/utils/recoil/store';
-import { UserLocationResponse, UserQRID, UserStatus } from '@/utils/types/user';
+import {
+  userPayloadState,
+  userQRIDState,
+  userStatus,
+} from '@/utils/recoil/store';
+import { UserLocationResponse, UserQRID } from '@/utils/types/user';
 import UserApi from '@/utils/api/user';
-import { initWebSocket } from '@/utils/api/webSocket';
+import AssignUser from '@/utils/hooks/AssignUser';
 
 export async function Loader({ params }: { params: Params }) {
   return UserApi.getUserLocation(params.qrID as string);
@@ -27,6 +31,7 @@ const Booking = () => {
   const [userQRID, setUserQRID] = useRecoilState<UserQRID>(userQRIDState);
   const [phoneNum, setPhoneNum] = useState<string>();
   const setUserStatus = useSetRecoilState(userStatus);
+  const setUserPayload = useSetRecoilState(userPayloadState);
   const navigate = useNavigate();
 
   useLayoutEffect(() => {
@@ -49,29 +54,16 @@ const Booking = () => {
     return false;
   };
 
-  const handleSubmit = async () => {
-    try {
-      const payload = {
-        hashed_qr_id: userQRID as string,
-        user_phone: String(phoneNum),
-      };
-      const response = await UserApi.postUserInfo(payload);
+  const handleSubmit = () => {
+    const payload = {
+      hashed_qr_id: userQRID as string,
+      user_phone: phoneNum as string,
+    };
+    setUserPayload(payload);
 
-      if (response) {
-        const { hashed_assign_id, id, status } = response;
-        const data: UserStatus = {
-          hashed_assign_id,
-          id,
-          status: status as UserStatus['status'],
-        };
-        console.log(data);
-        setUserStatus(data);
-        initWebSocket(data.id, navigate);
-        navigate('/waiting');
-      }
-    } catch (error) {
+    AssignUser({ payload, navigate, setUserStatus }).catch((error: Error) => {
       console.error('Failed to submit user info:', error);
-    }
+    });
   };
 
   return (
@@ -97,7 +89,7 @@ const Booking = () => {
         <Button
           text="호출하기"
           onClick={() => {
-            handleSubmit().catch(error => console.error(error));
+            handleSubmit();
           }}
         />
       </styles.ButtonSection>

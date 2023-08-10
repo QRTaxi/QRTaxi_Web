@@ -5,19 +5,26 @@ import { IcSuccess, IcDriver } from '@/assets/lottie';
 import { theme } from '@/styles/theme';
 import { useState } from 'react';
 import Modal from '@/components/common/Modal';
+import UserApi from '@/utils/api/user';
+import { useRecoilValue } from 'recoil';
+import { userStatus } from '@/utils/recoil/store';
+import { useNavigate } from 'react-router-dom';
 
 const Success = () => {
-  //호출 취소
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const { id: assign_id } = useRecoilValue(userStatus);
+  const navigate = useNavigate();
 
-  const openModal = () => {
-    setIsModalOpen(true);
+  const toggleModal = (isModalOpen: boolean) => {
+    setIsModalOpen(!isModalOpen);
   };
 
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
   const cancelModal = () => {
+    console.log(assign_id);
+    UserApi.postCancelBooking({ assign_id }).catch((error: Error) =>
+      console.error('Failed to cancel booking: ', error),
+    );
+    navigate('/cancel');
     setIsModalOpen(false);
   };
   //전화 연결
@@ -44,11 +51,11 @@ const Success = () => {
               color={theme.colors.QT_Color_Gray_3}
               text="호출 취소하기"
               padding="0.8rem"
-              onClick={openModal}
+              onClick={() => toggleModal(isModalOpen)}
             />
             <Modal
               isOpen={isModalOpen}
-              onClose={closeModal}
+              onClose={() => toggleModal(isModalOpen)}
               title="호출 취소"
               text1="현재 기사님이 달려오고 있어요"
               text2="정말 호출을 취소하시겠어요?"

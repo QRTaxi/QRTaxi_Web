@@ -4,7 +4,21 @@ import Header from '@/components/common/Header';
 import Lottie from 'lottie-react';
 import { IcHighFive } from '@/assets/lottie';
 
+import { userPayloadState, userQRIDState } from '@/utils/recoil/store';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useNavigate } from 'react-router-dom';
+
 const Finish = () => {
+  const setUserQRIDState = useSetRecoilState(userQRIDState);
+  const [userPayload, setUserPayload] = useRecoilState(userPayloadState);
+  const navigate = useNavigate();
+
+  const handleNewAssign = () => {
+    setUserQRIDState(null);
+    setUserPayload({ ...userPayload, hashed_qr_id: '' });
+    navigate('/');
+  };
+
   return (
     <styles.FinishWrapper>
       <styles.FirstSection>
@@ -24,7 +38,11 @@ const Finish = () => {
           <br />
           아래 버튼을 눌러주세요
         </styles.CallBtnDescription>
-        <Button fontSize="x-large" text="다른 택시 호출하기" />
+        <Button
+          fontSize="x-large"
+          text="다른 택시 호출하기"
+          onClick={handleNewAssign}
+        />
       </styles.FirstSection>
     </styles.FinishWrapper>
   );

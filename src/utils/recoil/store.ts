@@ -1,5 +1,6 @@
 import { atom, selector } from 'recoil';
 import {
+  UserInfoPayload,
   UserLocationResponse as UserLocationInfo,
   UserQRID,
   UserStatus,
@@ -9,6 +10,14 @@ import UserApi from '../api/user';
 export const userQRIDState = atom<UserQRID>({
   key: 'userQRIDState',
   default: null,
+});
+
+export const userPayloadState = atom<UserInfoPayload>({
+  key: 'userPayloadState',
+  default: {
+    hashed_qr_id: '',
+    user_phone: '',
+  },
 });
 
 export const userLocationInfoState = selector<UserLocationInfo | null>({
