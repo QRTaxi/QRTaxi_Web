@@ -1,7 +1,25 @@
+import { useState, useRef } from 'react';
 import { LogoSymbolWhite } from '@/assets/images';
 import * as styles from './LandingStyle';
 
 const Landing = () => {
+  const [stream, setStream] = useState<MediaStream | null>(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+
+  const handleCameraButtonClick = () => {
+    navigator.mediaDevices
+      .getUserMedia({ video: true })
+      .then(userStream => {
+        setStream(userStream);
+        if (videoRef.current) {
+          videoRef.current.srcObject = userStream;
+        }
+      })
+      .catch(error => {
+        console.error('Error accessing camera:', error);
+      });
+  };
+
   return (
     <styles.LandingWrapper>
       <styles.FirstSection>
@@ -13,7 +31,7 @@ const Landing = () => {
           </h1>
         </styles.Contents>
       </styles.FirstSection>
-      <styles.CameraButton>
+      <styles.CameraButton onClick={handleCameraButtonClick}>
         <LogoSymbolWhite />
       </styles.CameraButton>
       <styles.CamBtnDescription>
@@ -21,6 +39,15 @@ const Landing = () => {
         <br />
         버튼을 클릭해 QR코드를 스캔해보세요!
       </styles.CamBtnDescription>
+      {stream && (
+        <video
+          ref={videoRef}
+          autoPlay
+          playsInline
+          muted
+          style={{ display: 'block' }}
+        />
+      )}
     </styles.LandingWrapper>
   );
 };
