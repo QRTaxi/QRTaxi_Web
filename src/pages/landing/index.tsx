@@ -8,7 +8,7 @@ const Landing = () => {
 
   const handleCameraButtonClick = () => {
     navigator.mediaDevices
-      .getUserMedia({ video: true })
+      .getUserMedia({ video: { facingMode: 'environment' } })
       .then(userStream => {
         setStream(userStream);
         if (videoRef.current) {
