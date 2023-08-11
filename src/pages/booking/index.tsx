@@ -29,9 +29,11 @@ const Booking = () => {
   const userLocationInfo = useLoaderData() as UserLocationResponse;
   const { qrID } = useParams();
   const [userQRID, setUserQRID] = useRecoilState<UserQRID>(userQRIDState);
-  const [phoneNum, setPhoneNum] = useState<string>();
+  const [userPayload, setUserPayload] = useRecoilState(userPayloadState);
+  const [phoneNum, setPhoneNum] = useState<string | undefined>(
+    userPayload.user_phone,
+  );
   const setUserStatus = useSetRecoilState(userStatus);
-  const setUserPayload = useSetRecoilState(userPayloadState);
   const navigate = useNavigate();
 
   useLayoutEffect(() => {
@@ -40,24 +42,44 @@ const Booking = () => {
     }
   }, []);
 
+  const [isValidPhoneNum, setIsValidPhoneNum] = useState<boolean>(false);
+
   const Validation = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // 유효성 검사에서 구현해야할 것들:
-    // 1. 11자가 모두 입력됐는지
-    // 2. 11자 이상 입력하면 막히게 해야 함
-    // 3. 서버에서 제시한대로 정규화해서 보내줘야함(Post)
     const num = e.target.value;
     console.log(num);
-    setPhoneNum(num);
-    if (phoneNum && phoneNum.toString().length == 11) {
-      return true;
+    console.log(userPayload.user_phone);
+
+    let formattedNum = num.replace(/[^\d]/g, ''); // 숫자 이외의 문자 제거
+    const hyphenedNum = formattedNum.replace(/-/g, ''); // 순수 숫자만
+
+    if (hyphenedNum.length < 4) {
+      formattedNum = hyphenedNum;
+    } else if (hyphenedNum.length < 8) {
+      formattedNum = `${hyphenedNum.slice(0, 3)}-${hyphenedNum.slice(3)}`;
+    } else if (hyphenedNum.length < 11) {
+      formattedNum = `${hyphenedNum.slice(0, 3)}-${hyphenedNum.slice(
+        3,
+        7,
+      )}-${hyphenedNum.slice(7)}`;
+    } else {
+      formattedNum = `${hyphenedNum.slice(0, 3)}-${hyphenedNum.slice(
+        3,
+        7,
+      )}-${hyphenedNum.slice(7, 11)}`;
     }
-    return false;
+
+    setPhoneNum(formattedNum);
+
+    const isValid = formattedNum.length == 13;
+    setIsValidPhoneNum(isValid);
   };
 
   const handleSubmit = () => {
+    // 서버로 전송하기 전에 '-'를 제거한 숫자만 포함된 전화번호로 변환
+    const normalizedPhoneNum = phoneNum?.replace(/-/g, '');
     const payload = {
       hashed_qr_id: userQRID as string,
-      user_phone: phoneNum as string,
+      user_phone: normalizedPhoneNum as string,
     };
     setUserPayload(payload);
 
@@ -80,9 +102,15 @@ const Booking = () => {
           <p>전화번호를 입력해주세요.</p>
           <input
             placeholder="010-1234-5678"
-            type="number"
+            type="text"
             onChange={Validation}
+            value={phoneNum || ''} // 재호출이라 phoneNum이 있을 경우 해당 값을 표시
           />
+          {isValidPhoneNum ? (
+            <p style={{ color: 'green' }}>유효한 전화번호입니다 ✅</p>
+          ) : (
+            <p style={{ color: 'red' }}>유효하지 않은 전화번호입니다 ❌</p>
+          )}
         </styles.SecondContent>
       </styles.SecondSection>
       <styles.ButtonSection>
@@ -91,6 +119,7 @@ const Booking = () => {
           onClick={() => {
             handleSubmit();
           }}
+          disabled={!isValidPhoneNum}
         />
       </styles.ButtonSection>
     </styles.BookingWrapper>
