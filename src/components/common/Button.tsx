@@ -24,8 +24,8 @@ const StyledButton = styled.button<IButton>`
   padding: ${({ padding }) => padding};
   font-size: ${({ fontSize }) => fontSize};
   text-align: center;
-  :disabled {
-    background-color: ${theme.colors.QT_Color_Orange.heavy};
+  &[disabled] {
+    background-color: ${theme.colors.QT_Color_Gray_4};
     color: ${theme.colors.QT_Color_Gray_2};
     cursor: not-allowed;
   }
