@@ -1,5 +1,6 @@
 import { UserStatus } from '@/utils/types/user';
 import UserApi from '@/utils/api/user';
+import { NavigateFunction } from 'react-router-dom';
 
 let socket: WebSocket | null = null;
 
@@ -10,10 +11,51 @@ export function closeWebSocket() {
   }
 }
 
+function switchRoutesByStatus(status: string, navigate: NavigateFunction) {
+  switch (status) {
+    case 'waiting':
+      console.log(`택시기사 배정이 시작되었습니다: ${status}`);
+      navigate('/waiting');
+      break;
+
+    case 'success':
+      console.log(`택시기사 배정이 완료되었습니다: ${status}`);
+      navigate('/success');
+      break;
+
+    case 'riding':
+      console.log(`사용자가 택시에 탑승하였습니다: ${status}`);
+      navigate('/riding');
+      break;
+
+    case 'failed':
+      console.log(`택시 배정에 실패했습니다: ${status}`);
+      navigate('/failed');
+      closeWebSocket();
+      break;
+
+    case 'finish':
+      console.log(`운행이 종료되었습니다: ${status}`);
+      navigate('/finish');
+      closeWebSocket();
+      break;
+
+    case 'cancel':
+      console.log(`성공적으로 호출을 취소했습니다: ${status}`);
+      navigate('/cancel');
+      closeWebSocket();
+      break;
+
+    default:
+      console.error(`Invalid message status : ${status}`);
+      break;
+  }
+}
+
 async function handleVisibilityChange(
   ws_url: string,
   id: UserStatus['id'],
-  navigate: (path: string) => void,
+  navigate: NavigateFunction,
 ) {
   if (document.hidden) {
     console.log('background');
@@ -37,29 +79,7 @@ async function handleVisibilityChange(
           console.log(
             `서버 상태와 클라이언트 상태 간 불일치가 감지되었습니다. ${status} 라우트로 이동합니다.`,
           );
-          switch (status) {
-            case 'success':
-              navigate('/success');
-              break;
-            case 'failed':
-              navigate('/failed');
-              closeWebSocket();
-              break;
-            case 'cancel':
-              navigate('/cancel');
-              closeWebSocket();
-              break;
-            case 'riding':
-              navigate('/riding');
-              break;
-            case 'finish':
-              navigate('/finish');
-              closeWebSocket();
-              break;
-            default:
-              console.error(`Invalid message type : ${status}`);
-              break;
-          }
+          switchRoutesByStatus(status, navigate);
         }
       } else {
         throw new Error(response.detail);
@@ -70,7 +90,7 @@ async function handleVisibilityChange(
 
 export const initWebSocket = (
   id: UserStatus['id'],
-  navigate: (path: string) => void,
+  navigate: NavigateFunction,
 ) => {
   const port_num = 443;
   const ws_url = `wss://${
@@ -102,44 +122,7 @@ export const initWebSocket = (
 
   socket.onmessage = (event: MessageEvent) => {
     const { type } = JSON.parse(event.data as string) as { type: string };
-    switch (type) {
-      case 'call.assign.waiting':
-        console.log(`택시기사 배정이 시작되었습니다: ${type}`);
-        navigate('/waiting');
-        break;
-
-      case 'call.assign.success':
-        console.log(`택시기사 배정이 완료되었습니다: ${type}`);
-        navigate('/success');
-        break;
-
-      case 'call.assign.riding':
-        console.log(`사용자가 택시에 탑승하였습니다: ${type}`);
-        navigate('/riding');
-        break;
-
-      case 'call.assign.failed':
-        console.log(`택시 배정에 실패했습니다: ${type}`);
-        navigate('/failed');
-        closeWebSocket();
-        break;
-
-      case 'call.assign.finish':
-        console.log(`운행이 종료되었습니다: ${type}`);
-        navigate('/finish');
-        closeWebSocket();
-        break;
-
-      case 'call.assign.cancel':
-        console.log(`성공적으로 호출을 취소했습니다: ${type}`);
-        navigate('/cancel');
-        closeWebSocket();
-        break;
-
-      default:
-        console.error(`Invalid message type : ${type}`);
-        break;
-    }
+    switchRoutesByStatus(type, navigate);
   };
 
   socket.onerror = (error: Event) => {
