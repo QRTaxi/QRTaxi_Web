@@ -68,7 +68,7 @@ const Booking = () => {
 
     setPhoneNum(formattedNum);
 
-    const isValid = formattedNum.length == 13;
+    const isValid = formattedNum.length === 13 && formattedNum.startsWith('01');
     setIsValidPhoneNum(isValid);
   };
 
@@ -104,11 +104,12 @@ const Booking = () => {
             onChange={Validation}
             value={phoneNum || ''} // 재호출이라 phoneNum이 있을 경우 해당 값을 표시
           />
-          {isValidPhoneNum ? (
-            <p style={{ color: 'green' }}>유효한 전화번호입니다 ✅</p>
-          ) : (
-            <p style={{ color: 'red' }}>유효하지 않은 전화번호입니다 ❌</p>
-          )}
+          {phoneNum &&
+            (isValidPhoneNum ? (
+              <p style={{ color: 'green' }}>유효한 전화번호입니다 ✅</p>
+            ) : (
+              <p style={{ color: 'red' }}>유효하지 않은 전화번호입니다 ❌</p>
+            ))}
         </styles.SecondContent>
       </styles.SecondSection>
       <styles.ButtonSection>
