@@ -4,12 +4,15 @@ import {
   UserLocationResponse as UserLocationInfo,
   UserQRID,
   UserStatus,
-} from '../types/user';
-import UserApi from '../api/user';
+} from '@/utils/types/user';
+import UserApi from '@/utils/api/user';
+import { recoilPersist } from 'recoil-persist';
+const { persistAtom } = recoilPersist();
 
 export const userQRIDState = atom<UserQRID>({
   key: 'userQRIDState',
   default: null,
+  effects_UNSTABLE: [persistAtom],
 });
 
 export const userPayloadState = atom<UserInfoPayload>({
@@ -18,6 +21,7 @@ export const userPayloadState = atom<UserInfoPayload>({
     hashed_qr_id: '',
     user_phone: '',
   },
+  effects_UNSTABLE: [persistAtom],
 });
 
 export const userLocationInfoState = selector<UserLocationInfo | null>({
@@ -39,4 +43,5 @@ export const userStatus = atom<UserStatus>({
     id: 0,
     status: 'booking',
   },
+  effects_UNSTABLE: [persistAtom],
 });
