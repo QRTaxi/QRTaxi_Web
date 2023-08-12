@@ -1,4 +1,4 @@
-import { useLayoutEffect, useState } from 'react';
+import { useLayoutEffect, useState, useEffect } from 'react';
 
 import * as styles from './BookingStyle';
 import Header from '@/components/common/Header';
@@ -34,15 +34,34 @@ const Booking = () => {
     userPayload.user_phone,
   );
   const setUserStatus = useSetRecoilState(userStatus);
+  const [isValidPhoneNum, setIsValidPhoneNum] = useState<boolean>(false);
+
   const navigate = useNavigate();
+  useEffect(() => {
+    // 페이지가 처음 로드될 때 실행될 코드 작성
+    if (userPayload.user_phone) {
+      let formattedNum = userPayload.user_phone;
+      if (formattedNum.length === 10) {
+        formattedNum = `${formattedNum.slice(0, 3)}-${formattedNum.slice(
+          3,
+          6,
+        )}-${formattedNum.slice(6)}`;
+      } else if (formattedNum.length === 11) {
+        formattedNum = `${formattedNum.slice(0, 3)}-${formattedNum.slice(
+          3,
+          7,
+        )}-${formattedNum.slice(7)}`;
+      }
+      setPhoneNum(formattedNum);
+      setIsValidPhoneNum(true);
+    }
+  }, []);
 
   useLayoutEffect(() => {
     if (qrID) {
       setUserQRID(qrID);
     }
   }, []);
-
-  const [isValidPhoneNum, setIsValidPhoneNum] = useState<boolean>(false);
 
   const Validation = (e: React.ChangeEvent<HTMLInputElement>) => {
     const num = e.target.value;
