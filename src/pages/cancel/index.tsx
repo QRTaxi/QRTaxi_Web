@@ -5,7 +5,6 @@ import Lottie from 'lottie-react';
 import { IcCancelled } from '@/assets/lottie';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { userPayloadState, userStatus } from '@/utils/recoil/store';
-import AssignUser from '@/utils/hooks/AssignUser';
 import { useNavigate } from 'react-router-dom';
 
 const Cancel = () => {
@@ -15,10 +14,7 @@ const Cancel = () => {
 
   const handleReassign = () => {
     setUserStatus({ ...UserStatus, status: 'booking' });
-
-    AssignUser({ payload, navigate, setUserStatus }).catch((error: Error) =>
-      console.error('Failed to submit user info:', error),
-    );
+    navigate(`/booking/${payload.hashed_qr_id}`);
   };
 
   return (
