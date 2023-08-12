@@ -7,9 +7,12 @@ import {
   DriverInfoResponse,
   DriverInfoPayload,
   CancelBookingResponse,
+  CheckStatusPayload,
+  CheckStatusResponse,
+  CheckStatusFailedResponse,
 } from '@/utils/types/user';
 import client from '../axios';
-import { isAxiosError } from 'axios';
+import { AxiosError, AxiosResponse, isAxiosError } from 'axios';
 
 class UserApi {
   static async getUserLocation(qrID: UserQRID) {
@@ -75,6 +78,23 @@ class UserApi {
       }
       console.log('Unexpected error', error);
       return null;
+    }
+  }
+
+  static async postCheckStatus(payload: CheckStatusPayload) {
+    try {
+      const response: AxiosResponse<CheckStatusResponse> = await client.post(
+        `/call/status/`,
+        payload,
+      );
+      return response.data;
+    } catch (error) {
+      const axiosError = error as AxiosError<CheckStatusFailedResponse>;
+      if (axiosError.response) {
+        return axiosError.response.data;
+      } else {
+        throw new Error();
+      }
     }
   }
 }
