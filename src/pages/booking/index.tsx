@@ -46,8 +46,6 @@ const Booking = () => {
 
   const Validation = (e: React.ChangeEvent<HTMLInputElement>) => {
     const num = e.target.value;
-    console.log(num);
-    console.log(userPayload.user_phone);
 
     let formattedNum = num.replace(/[^\d]/g, ''); // 숫자 이외의 문자 제거
     const hyphenedNum = formattedNum.replace(/-/g, ''); // 순수 숫자만
