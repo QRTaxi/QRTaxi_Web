@@ -52,11 +52,11 @@ function switchRoutesByStatus(status: string, navigate: NavigateFunction) {
   }
 }
 
-async function handleVisibilityChange(
+const handleVisibilityChange = async (
   ws_url: string,
   id: UserStatus['id'],
   navigate: NavigateFunction,
-) {
+) => {
   if (document.hidden) {
     console.log('background');
     // 페이지가 백그라운드로 가려질 때 실행할 로직
@@ -67,26 +67,30 @@ async function handleVisibilityChange(
     if (!socket) {
       socket = new WebSocket(ws_url);
       console.log(
-        `동일한 ws_url로 웹소켓이 재연결되었습니다. 연결이 끊어진 공백기간 동안 상태에 변화가 있는지 확인합니다. id=${id}, url=${ws_url}`,
+        `동일한 ws_url로 웹소켓이 재연결되었습니다. 연결이 끊어진 공백기간 동안 상태에 변화가 있는지 확인합니다. ${ws_url}`,
       );
 
       const response = await UserApi.postCheckStatus({ assign_id: id });
 
       if ('status' in response) {
         const { status } = response;
-        if (!window.location.pathname.includes(status)) {
-          // 현재 라우트 pathname과 실제 상태가 일치하지 않으면 리다이렉션 발생
+        if (
+          !window.location.pathname.includes(status) &&
+          !['failed', 'finish', 'cancel'].includes(status)
+        ) {
+          // 현재 라우트 pathname과 실제 상태가 일치하지 않고, 배정실패/하차/호출취소가 아닌 상태에서만 리다이렉션 발생
           console.log(
             `서버 상태와 클라이언트 상태 간 불일치가 감지되었습니다. ${status} 라우트로 이동합니다.`,
           );
           switchRoutesByStatus(status, navigate);
-        }
+        } else
+          console.log(`${status} 상태이므로 소켓 재연결을 시도하지 않습니다.`);
       } else {
         throw new Error(response.detail);
       }
     } else console.log(`소켓 연결이 살아있는 상태입니다. ${socket.url}`);
   }
-}
+};
 
 export const initWebSocket = (
   id: UserStatus['id'],
@@ -97,12 +101,11 @@ export const initWebSocket = (
     import.meta.env.VITE_BASE_URL
   }:${port_num}/ws/call/${id}/`;
 
-  // 화면 꺼짐/켜짐 상태 감지
-  document.addEventListener('visibilitychange', () => {
+  const listener = () => {
     handleVisibilityChange(ws_url, id, navigate).catch(error =>
       console.error(error),
     );
-  });
+  };
 
   if (!socket) {
     console.log(ws_url);
@@ -118,6 +121,8 @@ export const initWebSocket = (
 
   socket.onopen = () => {
     console.log('websocket connected');
+    // 화면 꺼짐/켜짐 상태 감지
+    document.addEventListener('visibilitychange', listener);
   };
 
   socket.onmessage = (event: MessageEvent) => {
@@ -136,11 +141,7 @@ export const initWebSocket = (
       );
     } else {
       console.log(`연결이 정상적으로 종료되었습니다(code=${event.code})`);
-      document.removeEventListener('visibilitychange', () => {
-        handleVisibilityChange(ws_url, id, navigate).catch(error =>
-          console.error(error),
-        );
-      }); // 정상적으로 연결이 종료되었을 때만 화면 꺼짐/켜짐 상태 감지 이벤트리스너 제거
+      document.removeEventListener('visibilitychange', listener); // 정상적으로 연결이 종료되었을 때만 화면 꺼짐/켜짐 상태 감지 이벤트리스너 제거
     }
   };
 };
