@@ -1,3 +1,4 @@
+/* getUserLocation */
 export type UserQRID = string | null;
 
 export interface UserLocationResponse {
@@ -5,6 +6,7 @@ export interface UserLocationResponse {
   description: string;
 }
 
+/* postUserInfo */
 export interface UserInfoPayload {
   hashed_qr_id: string;
   user_phone: string;
@@ -27,8 +29,7 @@ export interface UserInfoFailedResponse {
   };
 }
 
-export type UserAssignID = UserInfoResponse['hashed_assign_id'];
-
+/* getDriverInfo */
 export type DriverInfoPayload = UserAssignID;
 
 export interface DriverInfoResponse {
@@ -47,6 +48,7 @@ export interface DriverInfoFailedResponse {
   error?: [string];
 }
 
+/* postCancelBooking */
 export interface CancelBookingPayload {
   assign_id: UserInfoResponse['id'];
 }
@@ -56,6 +58,18 @@ export interface CancelBookingResponse {
 }
 
 export type CancelBookingFailedResponse = DriverInfoFailedResponse;
+
+/* postCheckStatus */
+export type CheckStatusPayload = CancelBookingPayload;
+
+export interface CheckStatusResponse {
+  status: string;
+}
+
+export type CheckStatusFailedResponse = CancelBookingResponse;
+
+/* Recoil Types */
+export type UserAssignID = UserInfoResponse['hashed_assign_id'];
 
 export interface UserStatus {
   hashed_assign_id: UserAssignID;
@@ -69,11 +83,3 @@ export interface UserStatus {
     | 'finish'
     | 'cancel';
 }
-
-export type CheckStatusPayload = CancelBookingPayload;
-
-export interface CheckStatusResponse {
-  status: string;
-}
-
-export type CheckStatusFailedResponse = CancelBookingResponse;
