@@ -20,6 +20,13 @@ export interface UserInfoResponse {
   hashed_assign_id: string;
 }
 
+export interface UserInfoFailedResponse {
+  detail: string;
+  error?: {
+    user_phone: [string];
+  };
+}
+
 export type UserAssignID = UserInfoResponse['hashed_assign_id'];
 
 export type DriverInfoPayload = UserAssignID;
@@ -35,6 +42,11 @@ export interface DriverInfoResponse {
   estimated_time: string;
 }
 
+export interface DriverInfoFailedResponse {
+  detail: string;
+  error?: [string];
+}
+
 export interface CancelBookingPayload {
   assign_id: UserInfoResponse['id'];
 }
@@ -42,6 +54,9 @@ export interface CancelBookingPayload {
 export interface CancelBookingResponse {
   detail: string;
 }
+
+export type CancelBookingFailedResponse = DriverInfoFailedResponse;
+
 export interface UserStatus {
   hashed_assign_id: UserAssignID;
   id: UserInfoResponse['id'];
@@ -55,13 +70,10 @@ export interface UserStatus {
     | 'cancel';
 }
 
-export interface CheckStatusPayload {
-  assign_id: UserInfoResponse['id'];
-}
+export type CheckStatusPayload = CancelBookingPayload;
 
 export interface CheckStatusResponse {
   status: string;
 }
-export interface CheckStatusFailedResponse {
-  detail: string;
-}
+
+export type CheckStatusFailedResponse = CancelBookingResponse;
