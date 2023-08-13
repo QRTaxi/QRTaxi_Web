@@ -1,4 +1,4 @@
-import { useLayoutEffect, useState } from 'react';
+import { useLayoutEffect, useState, useEffect } from 'react';
 
 import * as styles from './BookingStyle';
 import Header from '@/components/common/Header';
@@ -34,7 +34,28 @@ const Booking = () => {
     userPayload.user_phone,
   );
   const setUserStatus = useSetRecoilState(userStatus);
+  const [isValidPhoneNum, setIsValidPhoneNum] = useState<boolean>(false);
+
   const navigate = useNavigate();
+  useEffect(() => {
+    // 페이지가 처음 로드될 때 실행될 코드 작성
+    if (userPayload.user_phone) {
+      let formattedNum = userPayload.user_phone;
+      if (formattedNum.length === 10) {
+        formattedNum = `${formattedNum.slice(0, 3)}-${formattedNum.slice(
+          3,
+          6,
+        )}-${formattedNum.slice(6)}`;
+      } else if (formattedNum.length === 11) {
+        formattedNum = `${formattedNum.slice(0, 3)}-${formattedNum.slice(
+          3,
+          7,
+        )}-${formattedNum.slice(7)}`;
+      }
+      setPhoneNum(formattedNum);
+      setIsValidPhoneNum(true);
+    }
+  }, []);
 
   useLayoutEffect(() => {
     if (qrID) {
@@ -42,12 +63,8 @@ const Booking = () => {
     }
   }, []);
 
-  const [isValidPhoneNum, setIsValidPhoneNum] = useState<boolean>(false);
-
   const Validation = (e: React.ChangeEvent<HTMLInputElement>) => {
     const num = e.target.value;
-    console.log(num);
-    console.log(userPayload.user_phone);
 
     let formattedNum = num.replace(/[^\d]/g, ''); // 숫자 이외의 문자 제거
     const hyphenedNum = formattedNum.replace(/-/g, ''); // 순수 숫자만
@@ -70,7 +87,7 @@ const Booking = () => {
 
     setPhoneNum(formattedNum);
 
-    const isValid = formattedNum.length == 13;
+    const isValid = formattedNum.length === 13 && formattedNum.startsWith('01');
     setIsValidPhoneNum(isValid);
   };
 
@@ -106,11 +123,12 @@ const Booking = () => {
             onChange={Validation}
             value={phoneNum || ''} // 재호출이라 phoneNum이 있을 경우 해당 값을 표시
           />
-          {isValidPhoneNum ? (
-            <p style={{ color: 'green' }}>유효한 전화번호입니다 ✅</p>
-          ) : (
-            <p style={{ color: 'red' }}>유효하지 않은 전화번호입니다 ❌</p>
-          )}
+          {phoneNum &&
+            (isValidPhoneNum ? (
+              <p style={{ color: 'green' }}>유효한 전화번호입니다 ✅</p>
+            ) : (
+              <p style={{ color: 'red' }}>유효하지 않은 전화번호입니다 ❌</p>
+            ))}
         </styles.SecondContent>
       </styles.SecondSection>
       <styles.ButtonSection>
