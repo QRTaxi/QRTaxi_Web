@@ -1,42 +1,46 @@
-import { theme } from '@/styles/theme';
+import { LayoutWrapper } from '@/components/common/Layout';
 import { styled } from 'styled-components';
 
-export const LandingWrapper = styled.div`
+export const LandingWrapper = styled(LayoutWrapper)`
   display: flex;
   flex-direction: column;
 
   align-items: center;
-
-  height: 100vh;
+  justify-content: space-between;
   gap: 1rem;
 `;
 
-export const FirstSection = styled.section`
+export const ContentWrapper = styled.section`
   width: 100%;
-  height: 30rem;
+  padding-left: 2.3rem;
+  padding-right: 2.3rem;
+`;
+
+export const FirstSection = styled(ContentWrapper)`
+  display: flex;
+  align-items: center;
+
+  margin-top: 7rem;
+`;
+
+export const SecondSection = styled(ContentWrapper)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin-bottom: 10rem;
+
+  gap: 5rem;
 `;
 
 export const Contents = styled.header`
-  padding-top: 11rem;
-  padding-left: 2.3rem;
-
   color: ${({ theme }) => theme.colors.QT_Color_Gray_Black};
 
   & > h1 {
-    font-family: 'Noto Sans';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 3.5rem;
+    ${({ theme }) => theme.fonts.QT_Title4_Pretendard_Bold_35}
     line-height: 131.2%;
     letter-spacing: -0.05em;
-
-    padding-bottom: 1.4rem;
   }
-`;
-
-export const LandingTitle = styled.p`
-  color: ${({ theme }) => theme.colors.QT_Color_White}
-  font: ${({ theme }) => theme.fonts.QT_Title4_Pretendard_Bold_35}
 `;
 
 export const CameraButton = styled.button`
@@ -44,15 +48,26 @@ export const CameraButton = styled.button`
   justify-content: center;
   align-items: center;
 
-  width: 25rem;
-  height: 25rem;
+  width: 26rem;
+  height: 26rem;
 
   border: none;
-  border-radius: 100%;
-  background-color: ${theme.colors.QT_Color_Orange.primary};
+  border-radius: 4rem;
+  background-color: ${({ theme }) => theme.colors.QT_Color_Orange.primary};
+
+  box-shadow:
+    0 3px 9px rgba(0, 0, 0, 0.12),
+    0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.25s ease-in-out;
+
+  &:hover {
+    box-shadow:
+      0 10px 20px rgba(0, 0, 0, 0.19),
+      0 6px 6px rgba(0, 0, 0, 0.23);
+  }
 
   & > svg {
-    width: 60%;
+    width: 65%;
   }
 `;
 

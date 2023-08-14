@@ -25,14 +25,16 @@ const Landing = () => {
           </h1>
         </styles.Contents>
       </styles.FirstSection>
-      <styles.CameraButton onClick={handleCameraAppLaunch}>
-        <LogoSymbolWhite />
-      </styles.CameraButton>
-      <styles.CamBtnDescription>
-        큐택을 이용하시려면
-        <br />
-        버튼을 클릭해 QR코드를 스캔해보세요!
-      </styles.CamBtnDescription>
+      <styles.SecondSection>
+        <styles.CameraButton onClick={handleCameraAppLaunch}>
+          <LogoSymbolWhite />
+        </styles.CameraButton>
+        <styles.CamBtnDescription>
+          큐택을 이용하시려면
+          <br />
+          버튼을 클릭해 QR코드를 스캔해보세요!
+        </styles.CamBtnDescription>
+      </styles.SecondSection>
     </styles.LandingWrapper>
   );
 };

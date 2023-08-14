@@ -5,7 +5,7 @@ const colors = {
     extralight: '#FFB864',
     light: '#FFA539',
     primary: '#FF8A00',
-    heavy: '#FF8B00',
+    heavy: '#DB6C00',
     extraheavy: '#9B5400',
   },
   QT_Color_Green: {
