@@ -1,12 +1,12 @@
+import { LayoutWrapper } from '@/components/common/Layout';
 import { styled } from 'styled-components';
 
-export const BookingWrapper = styled.div`
+export const BookingWrapper = styled(LayoutWrapper)`
   display: flex;
   flex-direction: column;
 
   align-items: center;
-
-  height: 100vh;
+  justify-content: space-between;
   gap: 1rem;
 `;
 
@@ -19,12 +19,18 @@ export const ContentWrapper = styled.section`
 export const FirstSection = styled(ContentWrapper)`
   display: flex;
   align-items: center;
-  padding-top: 5rem;
+
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 `;
 
 export const SecondSection = styled(ContentWrapper)`
   display: flex;
   flex-direction: column;
+
+  margin-top: 5rem;
+  margin-bottom: 10rem;
+
   gap: 4rem;
 `;
 
@@ -58,7 +64,8 @@ export const SecondContent = styled.article`
 `;
 
 export const ButtonSection = styled(ContentWrapper)`
-  height: 33%;
   display: flex;
   align-items: center;
+
+  margin-bottom: 5rem;
 `;
