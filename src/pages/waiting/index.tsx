@@ -33,13 +33,13 @@ const Waiting = () => {
 
   return (
     <styles.WaitingWrapper>
-      <styles.TextSection>
-        <styles.TextContent>큐택 호출 중이에요.</styles.TextContent>
-      </styles.TextSection>
-      <styles.LottieSection>
+      <styles.FirstSection>
+        <h1>큐택 호출 중이에요.</h1>
+      </styles.FirstSection>
+      <styles.SecondSection>
         <Lottie animationData={IcTaxi} />
-      </styles.LottieSection>
-      <styles.ButtonSection>
+      </styles.SecondSection>
+      <styles.ThirdSection>
         <Button
           text="취소하기"
           color={theme.colors.QT_Color_White}
@@ -60,7 +60,7 @@ const Waiting = () => {
           action="호출 취소"
           onAction={cancelModal}
         />
-      </styles.ButtonSection>
+      </styles.ThirdSection>
     </styles.WaitingWrapper>
   );
 };
