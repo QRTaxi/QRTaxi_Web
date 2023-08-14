@@ -37,7 +37,7 @@ const Button = ({
   backgroundColor = theme.colors.QT_Color_Orange.primary,
   color = theme.colors.QT_Color_White,
   fontWeight = 600,
-  borderRadius = '4px',
+  borderRadius = '1rem',
   text,
   onClick,
   padding = '10px 12px',
