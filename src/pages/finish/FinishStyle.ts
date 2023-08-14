@@ -1,63 +1,67 @@
+import { LayoutWrapper } from '@/components/common/Layout';
 import { styled } from 'styled-components';
 
-export const FinishWrapper = styled.div`
+export const FinishWrapper = styled(LayoutWrapper)`
   display: flex;
   flex-direction: column;
 
-  align-items: center;
-
-  height: 100vh;
+  justify-content: space-between;
   gap: 1rem;
-  margin-top: 2.3rem;
 `;
 
-export const FirstSection = styled.section`
-  width: 100%;
-  height: 80rem;
-  padding: 1.6rem;
-`;
 export const ContentWrapper = styled.section`
   width: 100%;
   padding-left: 2.3rem;
   padding-right: 2.3rem;
 `;
 
-export const Contents = styled.header`
-  padding-top: 11rem;
-  padding-left: 2.3rem;
+export const FirstSection = styled(ContentWrapper)`
+  display: flex;
+  flex-direction: column;
 
-  color: ${({ theme }) => theme.colors.QT_Color_Gray_Black};
+  margin-top: 7rem;
+  gap: 2rem;
+`;
 
-  & > h1 {
-    font-family: 'Noto Sans';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 3.5rem;
-    line-height: 131.2%;
-    letter-spacing: -0.05em;
+export const SecondSection = styled(ContentWrapper)`
+  display: flex;
+  flex-direction: column;
 
-    padding-bottom: 1.4rem;
+  margin-top: 6rem;
+  margin-bottom: 3rem;
+`;
+
+export const LottieSection = styled.div`
+  display: flex;
+  justify-content: center;
+
+  & > div {
+    width: 80%;
   }
 `;
 
-export const LottieSection = styled(ContentWrapper)`
-  height: 33%;
-  padding-left: 1.1rem;
-  padding-right: 1.4rem;
+export const TextSection = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 2rem;
 `;
 
-export const IconDescription = styled.p`
-  ${({ theme }) => theme.fonts.QT_Noto_B_Title_3}
+export const TitleText = styled.p`
+  ${({ theme }) => theme.fonts.QT_Title1_Pretendard_Bold_24}
   color: ${({ theme }) => theme.colors.QT_Color_Gray_Black};
   text-align: center;
-  margin-top: 13.5rem;
-  line-height: 5.3rem;
+  font-size: 3.5rem;
+  line-height: 3.5rem;
   letter-spacing: -0.03em;
-`; //margin-top으로 lottie 아이콘이랑 안겹쳐지게 함(임시)
+`;
 
-export const CallBtnDescription = styled.p`
-  ${({ theme }) => theme.fonts.QT_Body1_Pretendard_Medium_16}
-  color: ${({ theme }) => theme.colors.QT_Color_Gray_3};
+export const BodyTextArea = styled.div`
   text-align: center;
-  line-height: 2rem;
+  & > p {
+    ${({ theme }) => theme.fonts.QT_Body1_Pretendard_Medium_16}
+    color: ${({ theme }) => theme.colors.QT_Color_Gray_3};
+    line-height: 2rem;
+  }
 `;
