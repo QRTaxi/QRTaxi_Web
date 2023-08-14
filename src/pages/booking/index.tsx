@@ -141,6 +141,7 @@ const Booking = () => {
           onClick={() => {
             handleSubmit();
           }}
+          width="100%"
           disabled={!isValidPhoneNum}
         />
       </styles.ButtonSection>

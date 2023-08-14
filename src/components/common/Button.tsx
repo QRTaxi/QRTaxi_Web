@@ -33,7 +33,7 @@ const StyledButton = styled.button<IButton>`
 `;
 
 const Button = ({
-  width = '100%',
+  width,
   backgroundColor = theme.colors.QT_Color_Orange.primary,
   color = theme.colors.QT_Color_White,
   fontWeight = 600,

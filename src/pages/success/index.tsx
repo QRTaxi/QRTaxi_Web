@@ -43,29 +43,28 @@ const Success = () => {
 
   return (
     <styles.FinishWrapper>
+      <styles.ButtonSection>
+        <Button
+          backgroundColor={theme.colors.QT_Color_White}
+          color={theme.colors.QT_Color_Gray_3}
+          text="호출 취소하기"
+          padding="0"
+          fontSize="1.6rem"
+          onClick={() => toggleModal(isModalOpen)}
+        />
+        <Modal
+          isOpen={isModalOpen}
+          onClose={() => toggleModal(isModalOpen)}
+          title="호출 취소"
+          text1="현재 기사님이 달려오고 있어요"
+          text2="정말 호출을 취소하시겠어요?"
+          action="호출 취소"
+          onAction={cancelModal}
+        />
+      </styles.ButtonSection>
       <styles.FirstSection>
-        <styles.TextButtonSection>
-          <>
-            <Button
-              backgroundColor={theme.colors.QT_Color_White}
-              color={theme.colors.QT_Color_Gray_3}
-              text="호출 취소하기"
-              padding="0.8rem"
-              onClick={() => toggleModal(isModalOpen)}
-            />
-            <Modal
-              isOpen={isModalOpen}
-              onClose={() => toggleModal(isModalOpen)}
-              title="호출 취소"
-              text1="현재 기사님이 달려오고 있어요"
-              text2="정말 호출을 취소하시겠어요?"
-              action="호출 취소"
-              onAction={cancelModal}
-            />
-          </>
-        </styles.TextButtonSection>
         <styles.TextSection>
-          <styles.TextContent>호출 성공 !</styles.TextContent>
+          <styles.TextContent>호출 성공!</styles.TextContent>
         </styles.TextSection>
         <styles.DriverSection>
           <styles.DriverPic>

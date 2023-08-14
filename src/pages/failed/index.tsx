@@ -42,6 +42,7 @@ const Failed = () => {
         </styles.CallBtnDescription>
         <Button
           fontSize="x-large"
+          width="100%"
           text="택시 다시 호출하기"
           onClick={handleReassign}
         />

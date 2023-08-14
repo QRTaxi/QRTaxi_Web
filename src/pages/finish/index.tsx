@@ -40,6 +40,7 @@ const Finish = () => {
         </styles.CallBtnDescription>
         <Button
           fontSize="x-large"
+          width="100%"
           text="다른 택시 호출하기"
           onClick={handleNewAssign}
         />

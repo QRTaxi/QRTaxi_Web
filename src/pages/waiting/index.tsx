@@ -43,6 +43,7 @@ const Waiting = () => {
           text="취소하기"
           padding="0.8rem"
           fontSize="2rem"
+          width="100%"
           onClick={() => toggleModal(isModalOpen)}
           disabled={isModalOpen}
         />

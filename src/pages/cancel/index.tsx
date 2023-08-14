@@ -35,6 +35,7 @@ const Cancel = () => {
         <Button
           fontSize="x-large"
           padding="1.6rem"
+          width="100%"
           text="택시 다시 호출하기"
           onClick={handleReassign}
         />
