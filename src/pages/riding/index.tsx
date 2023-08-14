@@ -37,9 +37,9 @@ const Riding = () => {
         <styles.TextButtonSection>
           <>
             <Button
-              backgroundColor={theme.colors.QT_Color_White}
+              text="신고하기 🚨"
               color={theme.colors.QT_Color_Gray_3}
-              text="신고하기🚨"
+              backgroundColor={theme.colors.QT_Color_White}
             />
           </>
         </styles.TextButtonSection>

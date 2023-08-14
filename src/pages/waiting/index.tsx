@@ -11,6 +11,7 @@ import { useRecoilValue } from 'recoil';
 import { userStatus } from '@/utils/recoil/store';
 import { useNavigate } from 'react-router-dom';
 import UserApi from '@/utils/api/user';
+import { theme } from '@/styles/theme';
 
 const Waiting = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -41,8 +42,11 @@ const Waiting = () => {
       <styles.ButtonSection>
         <Button
           text="취소하기"
-          padding="0.8rem"
-          fontSize="2rem"
+          color={theme.colors.QT_Color_White}
+          backgroundColor={theme.colors.QT_Color_Orange.primary}
+          padding="1rem"
+          fontSize="1.6rem"
+          borderRadius="1rem"
           width="100%"
           onClick={() => toggleModal(isModalOpen)}
           disabled={isModalOpen}

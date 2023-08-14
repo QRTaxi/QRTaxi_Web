@@ -5,7 +5,6 @@ export const WaitingWrapper = styled(LayoutWrapper)`
   display: flex;
   flex-direction: column;
 
-  align-items: center;
   justify-content: space-between;
   gap: 1rem;
 `;
@@ -32,7 +31,6 @@ export const TextContent = styled.p`
 `;
 
 export const LottieSection = styled(ContentWrapper)`
-  // height: 60%;
   padding-left: 1.1rem;
   padding-right: 1.4rem;
 `; // Lottie 이미지가 독립적인 여백을 갖고 있어서 불가피하게 하드코딩함

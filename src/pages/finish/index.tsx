@@ -7,6 +7,7 @@ import { IcHighFive } from '@/assets/lottie';
 import { userPayloadState, userQRIDState } from '@/utils/recoil/store';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { useNavigate } from 'react-router-dom';
+import { theme } from '@/styles/theme';
 
 const Finish = () => {
   const setUserQRIDState = useSetRecoilState(userQRIDState);
@@ -39,9 +40,13 @@ const Finish = () => {
           아래 버튼을 눌러주세요
         </styles.CallBtnDescription>
         <Button
-          fontSize="x-large"
-          width="100%"
           text="다른 택시 호출하기"
+          color={theme.colors.QT_Color_White}
+          backgroundColor={theme.colors.QT_Color_Orange.primary}
+          padding="1rem"
+          fontSize="1.6rem"
+          borderRadius="1rem"
+          width="100%"
           onClick={handleNewAssign}
         />
       </styles.FirstSection>

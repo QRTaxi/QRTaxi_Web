@@ -1,76 +1,50 @@
+import { LayoutWrapper } from '@/components/common/Layout';
 import { styled } from 'styled-components';
 
-export const FinishWrapper = styled.div`
+export const FinishWrapper = styled(LayoutWrapper)`
   display: flex;
   flex-direction: column;
 
-  align-items: center;
-
-  height: 100vh;
+  justify-content: space-between;
   gap: 1rem;
-  margin-top: 2.3rem;
 `;
 
-export const FirstSection = styled.section`
-  width: 100%;
-  height: 80rem;
-  padding: 1.6rem;
-  align-items: center;
-  justify-content: center;
-`;
 export const ContentWrapper = styled.section`
   width: 100%;
   padding-left: 2.3rem;
   padding-right: 2.3rem;
 `;
 
-export const Contents = styled.header`
-  padding-top: 11rem;
-  padding-left: 2.3rem;
+export const FirstSection = styled(ContentWrapper)`
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 2rem;
+`;
 
-  color: ${({ theme }) => theme.colors.QT_Color_Gray_Black};
+export const SecondSection = styled(ContentWrapper)`
+  display: flex;
+  flex-direction: column;
 
+  margin-top: 2rem;
+`;
+
+export const ThirdSection = styled(ContentWrapper)`
+  display: flex;
+  flex-direction: column;
+
+  margin-bottom: 2rem;
+`;
+
+export const TextSection = styled.div`
   & > h1 {
-    font-family: 'Noto Sans';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 3.5rem;
-    line-height: 131.2%;
-    letter-spacing: -0.05em;
+    ${({ theme }) => theme.fonts.QT_Noto_SB_Title_2}
 
-    padding-bottom: 1.4rem;
+    line-height: 131.2%;
+    letter-spacing: -0.025em;
   }
 `;
-export const TextSection = styled(ContentWrapper)`
-  height: 22%;
-  display: flex;
-  align-items: center;
-`;
 
-export const TextContent = styled.p`
-  font-family: 'Noto Sans';
-  font-style: normal;
-  font-weight: 500;
-  font-size: 3.5rem;
-  line-height: 131.2%;
-  letter-spacing: -0.025em;
-`;
-export const TextButtonSection = styled.section`
-  display: flex;
-  align-items: center;
-  float: right;
-`;
-
-export const LottieSection = styled(ContentWrapper)`
-  height: 33%;
-  padding-left: 5.1rem;
-  padding-right: 1.4rem;
-  padding-top: 2rem;
-  padding-bottom: 5rem;
-  align-items: center;
-  width: 90%;
-  float: center;
-`;
+export const LottieSection = styled.div``;
 
 export const IconDescription = styled.p`
   ${({ theme }) => theme.fonts.QT_Noto_B_Title_3}
@@ -81,29 +55,28 @@ export const IconDescription = styled.p`
   letter-spacing: -0.03em;
 `; //margin-top으로 lottie 아이콘이랑 안겹쳐지게 함(임시)
 
-export const DriverSection = styled(ContentWrapper)`
-  height: 23%;
-  padding-left: 1rem;
-  padding-right: 1.4rem;
-  align-items: center;
+export const DriverInfoSection = styled.section`
   display: flex;
-  justify-content: center;
-  padding-bottom: 3rem;
+  justify-content: space-evenly;
+  align-items: center;
 `;
 
-export const DriverDescriptionSection = styled(ContentWrapper)`
-  height: 33%;
-  padding-left: 0rem;
-  padding-right: 1.4rem;
-  align-items: center;
+export const DriverPic = styled.div`
+  border-radius: 100%;
+  padding: 1rem;
+  background-color: #fce49f;
+`;
+
+export const DriverInfo = styled.div`
   display: flex;
+  align-items: center;
   flex-direction: column;
   justify-content: center;
 `;
 
 export const CarNumDescription = styled.p`
-  ${({ theme }) => theme.fonts.QT_Noto_B_Title_3}
-  color: ${({ theme }) => theme.colors.QT_Color_Gray_Black};
+  ${({ theme }) => theme.fonts.QT_Noto_SB_Title_2}
+  font-size: 3rem;
   text-align: left;
   margin-top: 1.5rem;
   line-height: 5.3rem;
@@ -122,13 +95,4 @@ export const CallBtnDescription = styled.p`
   color: ${({ theme }) => theme.colors.QT_Color_Gray_3};
   text-align: center;
   line-height: 2rem;
-`;
-
-export const DriverPic = styled(ContentWrapper)`
-  padding-left: 0rem;
-  padding-right: 0rem;
-  padding-bottom: 1rem;
-  width: 60%;
-  border-radius: 100px;
-  background-color: #fce49f;
 `;

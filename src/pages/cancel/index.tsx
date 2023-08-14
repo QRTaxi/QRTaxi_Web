@@ -6,6 +6,7 @@ import { IcCancelled } from '@/assets/lottie';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { userPayloadState, userStatus } from '@/utils/recoil/store';
 import { useNavigate } from 'react-router-dom';
+import { theme } from '@/styles/theme';
 
 const Cancel = () => {
   const [UserStatus, setUserStatus] = useRecoilState(userStatus);
@@ -33,10 +34,13 @@ const Cancel = () => {
           아래 버튼을 눌러주세요
         </styles.CallBtnDescription>
         <Button
-          fontSize="x-large"
-          padding="1.6rem"
-          width="100%"
           text="택시 다시 호출하기"
+          color={theme.colors.QT_Color_White}
+          backgroundColor={theme.colors.QT_Color_Orange.primary}
+          padding="1rem"
+          fontSize="1.6rem"
+          borderRadius="1rem"
+          width="100%"
           onClick={handleReassign}
         />
       </styles.FirstSection>

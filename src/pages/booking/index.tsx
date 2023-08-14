@@ -20,6 +20,7 @@ import {
 import { UserLocationResponse, UserQRID } from '@/utils/types/user';
 import UserApi from '@/utils/api/user';
 import AssignUser from '@/utils/hooks/AssignUser';
+import { theme } from '@/styles/theme';
 
 export async function Loader({ params }: { params: Params }) {
   const response = await UserApi.getUserLocation(params.qrID as string);
@@ -138,6 +139,11 @@ const Booking = () => {
       <styles.ButtonSection>
         <Button
           text="호출하기"
+          color={theme.colors.QT_Color_White}
+          backgroundColor={theme.colors.QT_Color_Orange.primary}
+          padding="1rem"
+          fontSize="1.6rem"
+          borderRadius="1rem"
           onClick={() => {
             handleSubmit();
           }}
