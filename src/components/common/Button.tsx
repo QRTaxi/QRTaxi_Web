@@ -41,7 +41,7 @@ const Button = ({
   text,
   onClick,
   padding = '10px 12px',
-  fontSize,
+  fontSize = '2rem',
   disabled,
   border = '0px',
 }: IButton) => {
