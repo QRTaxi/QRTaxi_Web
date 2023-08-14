@@ -5,6 +5,7 @@ import { RouterProvider } from 'react-router-dom';
 import Router from './components/common/Router';
 import { RecoilRoot } from 'recoil';
 import { Suspense } from 'react';
+import Layout from './components/common/Layout';
 
 export default function App() {
   return (
@@ -12,9 +13,11 @@ export default function App() {
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <RecoilRoot>
-          <Suspense>
-            <RouterProvider router={Router} />
-          </Suspense>
+          <Layout>
+            <Suspense>
+              <RouterProvider router={Router} />
+            </Suspense>
+          </Layout>
         </RecoilRoot>
       </ThemeProvider>
     </>
