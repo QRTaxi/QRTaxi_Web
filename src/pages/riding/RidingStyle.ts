@@ -33,7 +33,7 @@ export const ThirdSection = styled(ContentWrapper)`
   flex-direction: column;
 
   margin-top: 6rem;
-  margin-bottom: 3rem;
+  margin-bottom: 6.6rem;
 `;
 
 export const TextSection = styled.div`
