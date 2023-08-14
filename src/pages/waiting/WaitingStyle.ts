@@ -1,12 +1,12 @@
+import { LayoutWrapper } from '@/components/common/Layout';
 import { styled } from 'styled-components';
 
-export const WaitingWrapper = styled.div`
+export const WaitingWrapper = styled(LayoutWrapper)`
   display: flex;
   flex-direction: column;
 
   align-items: center;
-
-  height: 100vh;
+  justify-content: space-between;
   gap: 1rem;
 `;
 
@@ -17,30 +17,28 @@ export const ContentWrapper = styled.section`
 `;
 
 export const TextSection = styled(ContentWrapper)`
-  height: 33%;
+  height: 20%;
   display: flex;
   align-items: center;
 `;
 
 export const TextContent = styled.p`
-  font-family: 'Noto Sans';
-  font-style: normal;
-  font-weight: 500;
+  ${({ theme }) => theme.fonts.QT_Noto_M_Subtitle_1}
   font-size: 3.5rem;
-  line-height: 131.2%;
+
   letter-spacing: -0.025em;
 
   padding-bottom: 1.4rem;
 `;
 
 export const LottieSection = styled(ContentWrapper)`
-  height: 33%;
+  // height: 60%;
   padding-left: 1.1rem;
   padding-right: 1.4rem;
 `; // Lottie 이미지가 독립적인 여백을 갖고 있어서 불가피하게 하드코딩함
 
 export const ButtonSection = styled(ContentWrapper)`
-  height: 33%;
+  height: 20%;
   display: flex;
   align-items: center;
 `;

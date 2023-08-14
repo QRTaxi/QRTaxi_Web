@@ -42,7 +42,9 @@ const Waiting = () => {
         <Button
           text="취소하기"
           padding="0.8rem"
+          fontSize="2rem"
           onClick={() => toggleModal(isModalOpen)}
+          disabled={isModalOpen}
         />
         <Modal
           isOpen={isModalOpen}
