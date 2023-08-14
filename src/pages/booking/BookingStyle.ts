@@ -31,7 +31,7 @@ export const SecondSection = styled(ContentWrapper)`
   margin-top: 5rem;
   margin-bottom: 10rem;
 
-  gap: 4rem;
+  gap: 5rem;
 `;
 
 export const SecondContent = styled.article`
@@ -40,18 +40,15 @@ export const SecondContent = styled.article`
   gap: 1rem;
 
   & > p {
-    font: ${({ theme }) => theme.fonts.QT_Body1_Pretendard_Medium_16};
+    ${({ theme }) => theme.fonts.QT_Body1_Pretendard_Medium_16};
+    height: 1.6rem;
   }
 
   & > h1 {
-    font-family: 'Noto Sans';
-    font-style: normal;
-    font-weight: 600;
+    ${({ theme }) => theme.fonts.QT_Noto_B_Title_3};
     font-size: 3rem;
     line-height: 131.2%;
     letter-spacing: -0.05em;
-
-    padding-bottom: 1.4rem;
   }
 
   & > input {
@@ -59,7 +56,7 @@ export const SecondContent = styled.article`
     border-radius: 5px;
     border: 1px solid ${({ theme }) => theme.colors.QT_Color_Gray_4};
 
-    font: ${({ theme }) => theme.fonts.QT_Body1_Pretendard_Medium_16};
+    ${({ theme }) => theme.fonts.QT_Body1_Pretendard_Medium_16};
   }
 `;
 
