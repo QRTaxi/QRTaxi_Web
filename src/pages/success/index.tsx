@@ -1,11 +1,12 @@
 import * as styles from './SuccessStyle';
+import { theme } from '@/styles/theme';
 import Button from '@/components/common/Button';
+import Modal from '@/components/common/Modal';
 import Lottie from 'lottie-react';
 import { IcSuccess, IcDriver } from '@/assets/lottie';
-import { theme } from '@/styles/theme';
-import { useState } from 'react';
-import Modal from '@/components/common/Modal';
+
 import UserApi from '@/utils/api/user';
+import { useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { userStatus } from '@/utils/recoil/store';
 import { useNavigate } from 'react-router-dom';
