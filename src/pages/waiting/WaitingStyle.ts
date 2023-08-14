@@ -36,7 +36,8 @@ export const LottieSection = styled(ContentWrapper)`
 `; // Lottie 이미지가 독립적인 여백을 갖고 있어서 불가피하게 하드코딩함
 
 export const ButtonSection = styled(ContentWrapper)`
-  height: 20%;
   display: flex;
   align-items: center;
+
+  margin-bottom: 3rem;
 `;

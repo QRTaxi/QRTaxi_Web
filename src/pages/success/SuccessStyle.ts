@@ -25,43 +25,48 @@ export const SecondSection = styled(ContentWrapper)`
   display: flex;
   flex-direction: column;
 
-  margin-top: 2rem;
+  gap: 2rem;
 `;
 
 export const ThirdSection = styled(ContentWrapper)`
   display: flex;
   flex-direction: column;
 
-  margin-bottom: 2rem;
+  margin-top: 6rem;
+  margin-bottom: 3rem;
 `;
 
 export const TextSection = styled.div`
   & > h1 {
-    ${({ theme }) => theme.fonts.QT_Noto_SB_Title_2}
-
+    ${({ theme }) => theme.fonts.QT_Title2_Pretendard_SemiBold_20}
+    font-weight: 500;
+    font-size: 2.6rem;
     line-height: 131.2%;
     letter-spacing: -0.025em;
   }
+
+  margin-bottom: 2rem;
 `;
 
-export const LottieSection = styled.div``;
+export const LottieSection = styled.div`
+  display: flex;
+  justify-content: center;
 
-export const IconDescription = styled.p`
-  ${({ theme }) => theme.fonts.QT_Noto_B_Title_3}
-  color: ${({ theme }) => theme.colors.QT_Color_Gray_Black};
-  text-align: center;
-  margin-top: 13.5rem;
-  line-height: 5.3rem;
-  letter-spacing: -0.03em;
-`; //margin-top으로 lottie 아이콘이랑 안겹쳐지게 함(임시)
+  & > div {
+    width: 50%;
+  }
+`;
 
 export const DriverInfoSection = styled.section`
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
+  padding-left: 1rem;
+  padding-right: 1rem;
 `;
 
 export const DriverPic = styled.div`
+  width: 30%;
   border-radius: 100%;
   padding: 1rem;
   background-color: #fce49f;
@@ -69,30 +74,28 @@ export const DriverPic = styled.div`
 
 export const DriverInfo = styled.div`
   display: flex;
-  align-items: center;
   flex-direction: column;
   justify-content: center;
+
+  gap: 1rem;
+
+  letter-spacing: -0.03rem;
+
+  & > h1 {
+    ${({ theme }) => theme.fonts.QT_Title1_Pretendard_Bold_24}
+    font-size: 3.2rem;
+    font-weight: 600;
+  }
+
+  & > p {
+    ${({ theme }) => theme.fonts.QT_Body1_Pretendard_Medium_16}
+  }
 `;
 
-export const CarNumDescription = styled.p`
-  ${({ theme }) => theme.fonts.QT_Noto_SB_Title_2}
-  font-size: 3rem;
-  text-align: left;
-  margin-top: 1.5rem;
-  line-height: 5.3rem;
-  letter-spacing: -0.03em;
-`;
-
-export const DriverDescription = styled.p`
-  ${({ theme }) => theme.fonts.QT_Body1_Pretendard_Medium_16}
-  color: ${({ theme }) => theme.colors.QT_Color_Gray_3};
-  text-align: left;
-  line-height: 2rem;
-`;
-
-export const CallBtnDescription = styled.p`
-  ${({ theme }) => theme.fonts.QT_Body1_Pretendard_Medium_16}
-  color: ${({ theme }) => theme.colors.QT_Color_Gray_3};
-  text-align: center;
-  line-height: 2rem;
+export const ETASection = styled.section`
+  & > p {
+    ${({ theme }) => theme.fonts.QT_Body1_Pretendard_Medium_16}
+    color: ${({ theme }) => theme.colors.QT_Color_Gray_3};
+    text-align: center;
+  }
 `;

@@ -71,25 +71,19 @@ const Success = () => {
             <Lottie animationData={IcDriver} />
           </styles.DriverPic>
           <styles.DriverInfo>
-            <styles.CarNumDescription>
-              서울22다
-              <br />
-              5422
-            </styles.CarNumDescription>
-            <styles.DriverDescription>
-              김멋사 기사님 •SM5
-            </styles.DriverDescription>
+            <h1>서울22다 5422</h1>
+            <p>김멋사 기사님 •SM5</p>
           </styles.DriverInfo>
         </styles.DriverInfoSection>
         <styles.LottieSection>
           <Lottie animationData={IcSuccess} />
         </styles.LottieSection>
-      </styles.SecondSection>
-      <styles.ThirdSection>
-        <styles.CallBtnDescription>
+        <styles.ETASection>
           <p>출발지로 달려가는 중이에요 🚀</p>
           <p>예상 시간: 00분</p>
-        </styles.CallBtnDescription>
+        </styles.ETASection>
+      </styles.SecondSection>
+      <styles.ThirdSection>
         <Button
           text="기사님과 전화 연결"
           color={theme.colors.QT_Color_White}
