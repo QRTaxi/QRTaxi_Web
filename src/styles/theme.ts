@@ -116,7 +116,7 @@ const fonts = {
     font-family: 'Noto Sans KR';
     font-style: normal;
     font-weight: 600;
-    font-size: 1.6rem;
+    font-size: 2.6rem;
     line-height: 2.2rem;
     letter-spacing: -0.02em;
   `,
@@ -126,6 +126,14 @@ const fonts = {
     font-weight: 700;
     font-size: 4rem;
     line-height: 3.95rem;
+  `,
+  QT_Noto_SB_Title_4: css`
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.6rem;
+    line-height: 2.2rem;
+    letter-spacing: -0.02em;
   `,
   QT_Noto_M_Subtitle_1: css`
     font-family: 'Noto Sans KR';
