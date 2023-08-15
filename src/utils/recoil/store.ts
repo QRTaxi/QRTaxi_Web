@@ -1,5 +1,7 @@
 import { atom, selector } from 'recoil';
 import {
+  DriverInfoFailedResponse,
+  DriverInfoResponse,
   UserInfoPayload,
   UserLocationResponse as UserLocationInfo,
   UserQRID,
@@ -44,4 +46,19 @@ export const userStatus = atom<UserStatus>({
     status: 'booking',
   },
   effects_UNSTABLE: [persistAtom],
+});
+
+export const driverInfoState = selector<
+  DriverInfoResponse | DriverInfoFailedResponse | null
+>({
+  key: 'driverInfoState',
+  get: async ({ get }) => {
+    const { hashed_assign_id, status } = get(userStatus);
+    const self = get(driverInfoState);
+    if (status === 'success' || (status === 'riding' && self !== null)) {
+      const response = await UserApi.getDriverInfo(hashed_assign_id);
+      return response;
+    }
+    return null;
+  },
 });
