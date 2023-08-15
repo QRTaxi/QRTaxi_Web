@@ -54,8 +54,11 @@ const Riding = () => {
               <Lottie animationData={IcDriver} />
             </styles.DriverPic>
             <styles.DriverInfo>
-              <h1>서울22다 5422</h1>
-              <p>김멋사 기사님 •SM5</p>
+              <h1>{driverInfo.driver_id.taxi_num}</h1>
+              <p>
+                {driverInfo.driver_id.name} 기사님{' '}
+                {driverInfo.driver_id.car_type}
+              </p>
             </styles.DriverInfo>
           </styles.DriverInfoSection>
           <styles.LottieSection>
