@@ -92,7 +92,7 @@ const Success = () => {
           </styles.LottieSection>
           <styles.ETASection>
             <p>출발지로 달려가는 중이에요 🚀</p>
-            <p>예상 시간: {driverInfo.estimated_time}분</p>
+            <p>예상 시간: {driverInfo.estimated_time}</p>
           </styles.ETASection>
         </styles.SecondSection>
         <styles.ThirdSection>
