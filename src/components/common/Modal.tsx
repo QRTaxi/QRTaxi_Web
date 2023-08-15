@@ -92,6 +92,7 @@ const Modal: React.FC<ModalProps> = ({
                 color={theme.colors.QT_Color_Red}
                 text={action}
                 padding="0rem"
+                width="100%"
                 onClick={onAction}
                 fontSize="1.8rem"
               />
@@ -100,6 +101,7 @@ const Modal: React.FC<ModalProps> = ({
                 color={theme.colors.QT_Color_Gray_3}
                 text="닫기"
                 padding="0rem"
+                width="100%"
                 onClick={onClose}
                 fontSize="1.8rem"
               />

@@ -1,11 +1,12 @@
 import * as styles from './SuccessStyle';
+import { theme } from '@/styles/theme';
 import Button from '@/components/common/Button';
+import Modal from '@/components/common/Modal';
 import Lottie from 'lottie-react';
 import { IcSuccess, IcDriver } from '@/assets/lottie';
-import { theme } from '@/styles/theme';
-import { useState } from 'react';
-import Modal from '@/components/common/Modal';
+
 import UserApi from '@/utils/api/user';
+import { useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { userStatus } from '@/utils/recoil/store';
 import { useNavigate } from 'react-router-dom';
@@ -44,60 +45,53 @@ const Success = () => {
   return (
     <styles.FinishWrapper>
       <styles.FirstSection>
-        <styles.TextButtonSection>
-          <>
-            <Button
-              backgroundColor={theme.colors.QT_Color_White}
-              color={theme.colors.QT_Color_Gray_3}
-              text="호출 취소하기"
-              padding="0.8rem"
-              onClick={() => toggleModal(isModalOpen)}
-            />
-            <Modal
-              isOpen={isModalOpen}
-              onClose={() => toggleModal(isModalOpen)}
-              title="호출 취소"
-              text1="현재 기사님이 달려오고 있어요"
-              text2="정말 호출을 취소하시겠어요?"
-              action="호출 취소"
-              onAction={cancelModal}
-            />
-          </>
-        </styles.TextButtonSection>
+        <Button
+          backgroundColor="transparent"
+          color={theme.colors.QT_Color_Gray_3}
+          text="호출 취소하기"
+          padding="0"
+          fontSize="1.2rem"
+          onClick={() => toggleModal(isModalOpen)}
+        />
+        <Modal
+          isOpen={isModalOpen}
+          onClose={() => toggleModal(isModalOpen)}
+          title="호출 취소"
+          text1="현재 기사님이 달려오고 있어요"
+          text2="정말 호출을 취소하시겠어요?"
+          action="호출 취소"
+          onAction={cancelModal}
+        />
+      </styles.FirstSection>
+      <styles.SecondSection>
         <styles.TextSection>
-          <styles.TextContent>호출 성공 !</styles.TextContent>
+          <h1>호출 성공!</h1>
         </styles.TextSection>
-        <styles.DriverSection>
+        <styles.DriverInfoSection>
           <styles.DriverPic>
             <Lottie animationData={IcDriver} />
           </styles.DriverPic>
-          <styles.DriverDescriptionSection>
-            <styles.CarNumDescription>
-              서울22다
-              <br />
-              5422
-            </styles.CarNumDescription>
-            <styles.DriverDescription>
-              김멋사 기사님 •SM5
-            </styles.DriverDescription>
-          </styles.DriverDescriptionSection>
-        </styles.DriverSection>
+          <styles.DriverInfo>
+            <h1>서울22다 5422</h1>
+            <p>김멋사 기사님 •SM5</p>
+          </styles.DriverInfo>
+        </styles.DriverInfoSection>
         <styles.LottieSection>
           <Lottie animationData={IcSuccess} />
         </styles.LottieSection>
-      </styles.FirstSection>
-      <styles.FirstSection>
-        <styles.CallBtnDescription>
-          출발지로 달려가는 중이에요 🚀
-          <br />
-          <br />
-          예상 시간: 00분
-          <br />
-          <br />
-        </styles.CallBtnDescription>
+        <styles.ETASection>
+          <p>출발지로 달려가는 중이에요 🚀</p>
+          <p>예상 시간: 00분</p>
+        </styles.ETASection>
+      </styles.SecondSection>
+      <styles.ThirdSection>
         <Button
-          fontSize="x-large"
           text="기사님과 전화 연결"
+          color={theme.colors.QT_Color_White}
+          backgroundColor={theme.colors.QT_Color_Orange.primary}
+          fontSize="1.6rem"
+          padding="1rem"
+          borderRadius="1rem"
           onClick={openCall}
         />
         <Modal
@@ -109,7 +103,7 @@ const Success = () => {
           action="통화"
           onAction={makeCall}
         />
-      </styles.FirstSection>
+      </styles.ThirdSection>
     </styles.FinishWrapper>
   );
 };

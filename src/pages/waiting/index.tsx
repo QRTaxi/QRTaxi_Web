@@ -11,6 +11,7 @@ import { useRecoilValue } from 'recoil';
 import { userStatus } from '@/utils/recoil/store';
 import { useNavigate } from 'react-router-dom';
 import UserApi from '@/utils/api/user';
+import { theme } from '@/styles/theme';
 
 const Waiting = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -32,17 +33,23 @@ const Waiting = () => {
 
   return (
     <styles.WaitingWrapper>
-      <styles.TextSection>
-        <styles.TextContent>큐택 호출 중이에요.</styles.TextContent>
-      </styles.TextSection>
-      <styles.LottieSection>
+      <styles.FirstSection>
+        <h1>큐택 호출 중이에요.</h1>
+      </styles.FirstSection>
+      <styles.SecondSection>
         <Lottie animationData={IcTaxi} />
-      </styles.LottieSection>
-      <styles.ButtonSection>
+      </styles.SecondSection>
+      <styles.ThirdSection>
         <Button
           text="취소하기"
-          padding="0.8rem"
+          color={theme.colors.QT_Color_White}
+          backgroundColor={theme.colors.QT_Color_Orange.primary}
+          padding="1rem"
+          fontSize="1.6rem"
+          borderRadius="1rem"
+          width="100%"
           onClick={() => toggleModal(isModalOpen)}
+          disabled={isModalOpen}
         />
         <Modal
           isOpen={isModalOpen}
@@ -53,7 +60,7 @@ const Waiting = () => {
           action="호출 취소"
           onAction={cancelModal}
         />
-      </styles.ButtonSection>
+      </styles.ThirdSection>
     </styles.WaitingWrapper>
   );
 };

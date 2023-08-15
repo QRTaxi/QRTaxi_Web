@@ -7,7 +7,6 @@ interface IHeader {
   color?: string;
   fontWeight?: string | number;
   text?: string;
-  marginBottom?: string;
   padding?: string;
   fontSize?: string;
   disabled?: boolean;
@@ -19,7 +18,6 @@ const StyledHeader = styled.button<IHeader>`
   background-color: ${({ backgroundColor }) => backgroundColor};
   color: ${({ color }) => color};
   font-weight: ${({ fontWeight }) => fontWeight};
-  margin-bottom: ${({ marginBottom }) => marginBottom};
   padding: ${({ padding }) => padding};
   text: ${({ text }) => text};
   font-size: ${({ fontSize }) => fontSize};
@@ -38,7 +36,6 @@ const Header = ({
   color = theme.colors.QT_Color_Gray_Black,
   fontWeight = 600,
   text = '큐택 호출하기 🚖',
-  marginBottom = '20px',
   padding = '10px 20px',
   fontSize,
   disabled,
@@ -51,7 +48,6 @@ const Header = ({
       color={color}
       fontWeight={fontWeight}
       text={text}
-      marginBottom={marginBottom}
       padding={padding}
       fontSize={fontSize}
       disabled={disabled}

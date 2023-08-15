@@ -2,12 +2,12 @@ import styled from 'styled-components';
 import { theme } from 'src/styles/theme';
 
 interface IButton {
+  text: string;
   width?: string;
   backgroundColor?: string;
   color?: string;
   fontWeight?: string | number;
   borderRadius?: string;
-  text: string;
   onClick?: () => void;
   padding?: string;
   fontSize?: string;
@@ -33,14 +33,14 @@ const StyledButton = styled.button<IButton>`
 `;
 
 const Button = ({
-  width = '100%',
-  backgroundColor = theme.colors.QT_Color_Orange.primary,
-  color = theme.colors.QT_Color_White,
-  fontWeight = 600,
-  borderRadius = '4px',
   text,
+  width,
+  backgroundColor,
+  color,
+  fontWeight = 500,
+  borderRadius,
   onClick,
-  padding = '10px 12px',
+  padding,
   fontSize,
   disabled,
   border = '0px',
