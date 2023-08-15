@@ -21,10 +21,7 @@ const Success = () => {
 
   useEffect(() => {
     setUserStatus({ ...UserStatus, status: 'success' });
-    console.log(UserStatus);
   }, []);
-
-  console.log(driverInfo);
 
   const toggleModal = (isModalOpen: boolean) => {
     setIsModalOpen(!isModalOpen);

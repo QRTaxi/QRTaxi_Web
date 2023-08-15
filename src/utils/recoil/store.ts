@@ -54,8 +54,7 @@ export const driverInfoState = selector<
   key: 'driverInfoState',
   get: async ({ get }) => {
     const { hashed_assign_id, status } = get(userStatus);
-    const self = get(driverInfoState);
-    if (status === 'success' || (status === 'riding' && self !== null)) {
+    if (status === 'success' || status === 'riding') {
       const response = await UserApi.getDriverInfo(hashed_assign_id);
       return response;
     }
