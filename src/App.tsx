@@ -1,10 +1,10 @@
-import { ThemeProvider } from 'styled-components';
 import GlobalStyle from 'src/styles/globalStyles';
-import { theme } from 'src/styles/theme';
+import { ThemeProvider } from 'styled-components';
 import { RouterProvider } from 'react-router-dom';
-import Router from './components/common/Router';
-import { RecoilRoot } from 'recoil';
+import { theme } from 'src/styles/theme';
 import { Suspense } from 'react';
+import { RecoilRoot } from 'recoil';
+import Router from './components/common/Router';
 import Layout from './components/common/Layout';
 
 export default function App() {

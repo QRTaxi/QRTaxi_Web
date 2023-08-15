@@ -10,7 +10,8 @@ import UserApi from '@/utils/api/user';
 import { useState, useEffect } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { driverInfoState, userStatus } from '@/utils/recoil/store';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { initWebSocket } from '@/utils/api/webSocket';
 
 const Success = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -18,8 +19,12 @@ const Success = () => {
   const [UserStatus, setUserStatus] = useRecoilState(userStatus);
   const driverInfo = useRecoilValue(driverInfoState);
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
+    if (['/waiting', '/success', '/riding'].includes(location.pathname)) {
+      initWebSocket(UserStatus.id, navigate);
+    }
     setUserStatus({ ...UserStatus, status: 'success' });
   }, []);
 

@@ -5,27 +5,36 @@ import { IcTaxi } from '@/assets/lottie';
 
 import Button from '@/components/common/Button';
 import Modal from '@/components/common/Modal';
+import { theme } from '@/styles/theme';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { userStatus } from '@/utils/recoil/store';
-import { useNavigate } from 'react-router-dom';
 import UserApi from '@/utils/api/user';
-import { theme } from '@/styles/theme';
+import { initWebSocket } from '@/utils/api/webSocket';
 
 const Waiting = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const { id: assign_id } = useRecoilValue(userStatus);
+  const UserStatus = useRecoilValue(userStatus);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    if (['/waiting', '/success', '/riding'].includes(location.pathname)) {
+      console.log(UserStatus);
+      initWebSocket(UserStatus.id, navigate);
+    }
+  }, []);
 
   const toggleModal = (isModalOpen: boolean) => {
     setIsModalOpen(!isModalOpen);
   };
 
   const cancelModal = () => {
-    console.log(assign_id);
-    UserApi.postCancelBooking({ assign_id }).catch((error: Error) =>
-      console.error('Failed to cancel booking: ', error),
+    console.log(UserStatus.id);
+    UserApi.postCancelBooking({ assign_id: UserStatus.id }).catch(
+      (error: Error) => console.error('Failed to cancel booking: ', error),
     );
     navigate('/cancel');
     setIsModalOpen(false);
