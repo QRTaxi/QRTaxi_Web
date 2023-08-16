@@ -83,3 +83,19 @@ export interface UserStatus {
     | 'finish'
     | 'cancel';
 }
+
+/* Firebase Token Types */
+export interface FirebaseTokenPayload {
+  assign_id: number;
+  push_token: string;
+}
+
+export interface PushMessage {
+  notification: {
+    title: string;
+    body: string;
+  };
+  data: {
+    status: string;
+  };
+}

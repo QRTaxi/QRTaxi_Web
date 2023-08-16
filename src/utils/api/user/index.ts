@@ -13,6 +13,7 @@ import {
   UserInfoFailedResponse,
   DriverInfoFailedResponse,
   CancelBookingFailedResponse,
+  FirebaseTokenPayload,
 } from '@/utils/types/user';
 import client from '../axios';
 import { AxiosError, AxiosResponse } from 'axios';
@@ -95,6 +96,23 @@ class UserApi {
       const axiosError = error as AxiosError<CheckStatusFailedResponse>;
       if (axiosError.response) {
         return axiosError.response.data;
+      } else {
+        throw new Error();
+      }
+    }
+  }
+
+  static async postFirebaseToken(payload: FirebaseTokenPayload) {
+    try {
+      const response: AxiosResponse = await client.post(
+        '/call/push/token/',
+        payload,
+      );
+      return response.status;
+    } catch (error) {
+      const axiosError = error as AxiosError;
+      if (axiosError.response) {
+        return axiosError.response.status;
       } else {
         throw new Error();
       }
