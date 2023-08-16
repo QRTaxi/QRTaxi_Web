@@ -29,17 +29,21 @@ export const messaging = getMessaging(firebaseApp);
 // getFirebaseToken function generates the FCM token
 export const handleFirebaseToken = async (assign_id: number) => {
   try {
-    const fcm_token = await getToken(messaging, {
-      vapidKey: import.meta.env.VITE_FB_VAPID_KEY as string,
-    });
-    if (fcm_token && assign_id) {
-      UserApi.postFirebaseToken({ assign_id, push_token: fcm_token })
-        .then((response: number) => {
-          console.log(response);
-        })
-        .catch((error: Error) => console.error(error));
-      // set token on localStorage
-      localStorage.setItem('fcm_token', fcm_token);
+    console.log(messaging);
+    // prevent racing problem and call initializeApp -> getMessaging-> getToken in sequences.
+    if (messaging) {
+      const fcm_token = await getToken(messaging, {
+        vapidKey: import.meta.env.VITE_FB_VAPID_KEY as string,
+      });
+      if (fcm_token && assign_id) {
+        UserApi.postFirebaseToken({ assign_id, push_token: fcm_token })
+          .then((response: number) => {
+            console.log(response);
+          })
+          .catch((error: Error) => console.error(error));
+        // set token on localStorage
+        localStorage.setItem('fcm_token', fcm_token);
+      }
     }
   } catch (error) {
     console.error(error);
