@@ -85,8 +85,9 @@ export const requestPermission = async (assign_id: number) => {
     if (permission === 'denied') {
       console.log('알림 권한 허용 안됨');
       return;
-    }
-    console.log('알림 권한이 허용됨');
+    } else console.log('알림 권한이 허용됨');
+  }
+  if (Notification.permission === 'granted') {
     handleFirebaseToken(assign_id).catch((error: Error) =>
       console.error(error),
     );
