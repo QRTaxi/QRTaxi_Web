@@ -47,17 +47,23 @@ export const handleFirebaseToken = async (assign_id: number) => {
 };
 
 export const requestPermission = async (assign_id: number) => {
-  console.log('권한 요청 중...');
-  const permission = await Notification.requestPermission();
-  if (permission === 'denied') {
-    console.log('알림 권한 허용 안됨');
-    return;
+  if (!('Notification' in window)) {
+    // Check if the browser supports notifications
+    console.log('This browser does not support desktop notification');
+  } else if (Notification.permission === 'default') {
+    console.log('권한 요청 중...');
+    const permission = await Notification.requestPermission();
+    if (permission === 'denied') {
+      console.log('알림 권한 허용 안됨');
+      return;
+    }
+    console.log('알림 권한이 허용됨');
+    handleFirebaseToken(assign_id).catch((error: Error) =>
+      console.error(error),
+    );
+
+    onMessage(messaging, payload => {
+      console.log('메시지가 도착했습니다.', payload);
+    });
   }
-
-  console.log('알림 권한이 허용됨');
-  handleFirebaseToken(assign_id).catch((error: Error) => console.error(error));
-
-  onMessage(messaging, payload => {
-    console.log('메시지가 도착했습니다.', payload);
-  });
 };
