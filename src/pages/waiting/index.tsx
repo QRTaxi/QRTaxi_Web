@@ -21,7 +21,10 @@ const Waiting = () => {
   const location = useLocation();
 
   useEffect(() => {
-    if (['/waiting', '/success', '/riding'].includes(location.pathname)) {
+    if (
+      ['/waiting', '/success', '/riding'].includes(location.pathname) &&
+      UserStatus.id
+    ) {
       console.log(UserStatus);
       initWebSocket(UserStatus.id, navigate);
     }
@@ -33,11 +36,13 @@ const Waiting = () => {
 
   const cancelModal = () => {
     console.log(UserStatus.id);
-    UserApi.postCancelBooking({ assign_id: UserStatus.id }).catch(
-      (error: Error) => console.error('Failed to cancel booking: ', error),
-    );
-    navigate('/cancel');
-    setIsModalOpen(false);
+    if (UserStatus.id) {
+      UserApi.postCancelBooking({ assign_id: UserStatus.id }).catch(
+        (error: Error) => console.error('Failed to cancel booking: ', error),
+      );
+      navigate('/cancel');
+      setIsModalOpen(false);
+    }
   };
 
   return (

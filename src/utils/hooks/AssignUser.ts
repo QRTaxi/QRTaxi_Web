@@ -24,7 +24,7 @@ const AssignUser = async ({
       status: status as UserStatus['status'],
     };
     setUserStatus(data);
-    initWebSocket(data.id, navigate);
+    initWebSocket(data.id as number, navigate);
     navigate('/waiting');
   }
 };
