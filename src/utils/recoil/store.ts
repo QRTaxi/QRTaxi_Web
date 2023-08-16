@@ -42,7 +42,7 @@ export const userStatus = atom<UserStatus>({
   key: 'userState',
   default: {
     hashed_assign_id: '',
-    id: 0,
+    id: null,
     status: 'booking',
   },
   effects_UNSTABLE: [persistAtom],

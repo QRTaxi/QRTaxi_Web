@@ -73,7 +73,7 @@ export type UserAssignID = UserInfoResponse['hashed_assign_id'];
 
 export interface UserStatus {
   hashed_assign_id: UserAssignID;
-  id: UserInfoResponse['id'];
+  id: UserInfoResponse['id'] | null;
   status:
     | 'booking'
     | 'waiting'
