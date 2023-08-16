@@ -15,6 +15,7 @@ export default function App() {
 
   // Need this handle FCM token generation when a user manually blocks or allows notification
   useEffect(() => {
+    console.log(assign_id);
     if (window.Notification?.permission === 'granted' && assign_id) {
       requestPermission(assign_id).catch((error: Error) =>
         console.error(error),
