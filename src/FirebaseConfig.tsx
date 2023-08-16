@@ -75,6 +75,15 @@ export const handleFirebaseToken = async (assign_id: number) => {
   }
 };
 
+const handleGranted = (assign_id: number) => {
+  console.log('알림 권한이 허용됨');
+  handleFirebaseToken(assign_id).catch((error: Error) => console.error(error));
+
+  onMessage(messaging, payload => {
+    console.log('메시지가 도착했습니다.', payload);
+  });
+};
+
 export const requestPermission = async (assign_id: number) => {
   if (!('Notification' in window)) {
     // Check if the browser supports notifications
@@ -86,14 +95,8 @@ export const requestPermission = async (assign_id: number) => {
       console.log('알림 권한 허용 안됨');
       return;
     } else {
-      console.log('알림 권한이 허용됨');
-      handleFirebaseToken(assign_id).catch((error: Error) =>
-        console.error(error),
-      );
-
-      onMessage(messaging, payload => {
-        console.log('메시지가 도착했습니다.', payload);
-      });
+      handleGranted(assign_id);
     }
   }
+  handleGranted(assign_id);
 };
