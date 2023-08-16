@@ -29,12 +29,15 @@ const Waiting = () => {
       console.log(UserStatus);
       initWebSocket(UserStatus.id, navigate);
     }
+  }, []);
+
+  useEffect(() => {
     if (UserStatus.id) {
       requestPermission(UserStatus.id).catch((error: Error) =>
         console.error(error),
       );
     }
-  }, []);
+  }, [UserStatus.id]);
 
   const toggleModal = (isModalOpen: boolean) => {
     setIsModalOpen(!isModalOpen);
