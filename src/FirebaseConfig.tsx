@@ -27,23 +27,48 @@ const firebaseConfig: FirebaseConfig = {
 export const firebaseApp = initializeApp(firebaseConfig);
 export const messaging = getMessaging(firebaseApp);
 
+// getOrRegisterServiceWorker function is used to try and get the service worker if it exists, otherwise it will register a new one.
+export const getOrRegisterServiceWorker = () => {
+  if (
+    'serviceWorker' in navigator &&
+    typeof window.navigator.serviceWorker !== 'undefined'
+  ) {
+    return window.navigator.serviceWorker
+      .getRegistration('/firebase-push-notification-scope')
+      .then(serviceWorker => {
+        if (serviceWorker) return serviceWorker;
+        return window.navigator.serviceWorker.register(
+          '/firebase-messaging-sw.js',
+          {
+            scope: '/firebase-push-notification-scope',
+          },
+        );
+      });
+  }
+  throw new Error('The browser doesn`t support service worker.');
+};
+
 // getFirebaseToken function generates the FCM token
 export const handleFirebaseToken = async (assign_id: number) => {
   try {
     console.log(messaging);
     // prevent racing problem and call initializeApp -> getMessaging-> getToken in sequences.
     if (messaging) {
-      const fcm_token = await getToken(messaging, {
-        vapidKey: import.meta.env.VITE_FB_VAPID_KEY as string,
-      });
-      if (fcm_token && assign_id) {
-        UserApi.postFirebaseToken({ assign_id, push_token: fcm_token })
-          .then((response: number) => {
-            console.log(response);
-          })
-          .catch((error: Error) => console.error(error));
-        // set token on localStorage
-        localStorage.setItem('fcm_token', fcm_token);
+      const serviceWorkerRegistration = await getOrRegisterServiceWorker();
+      if (serviceWorkerRegistration) {
+        const fcm_token = await getToken(messaging, {
+          vapidKey: import.meta.env.VITE_FB_VAPID_KEY as string,
+          serviceWorkerRegistration,
+        });
+        if (fcm_token && assign_id) {
+          UserApi.postFirebaseToken({ assign_id, push_token: fcm_token })
+            .then((response: number) => {
+              console.log(response);
+            })
+            .catch((error: Error) => console.error(error));
+          // set token on localStorage
+          localStorage.setItem('fcm_token', fcm_token);
+        }
       }
     }
   } catch (error) {
