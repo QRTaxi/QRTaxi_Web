@@ -73,7 +73,7 @@ export type UserAssignID = UserInfoResponse['hashed_assign_id'];
 
 export interface UserStatus {
   hashed_assign_id: UserAssignID;
-  id: UserInfoResponse['id'];
+  id: UserInfoResponse['id'] | null;
   status:
     | 'booking'
     | 'waiting'
@@ -82,4 +82,20 @@ export interface UserStatus {
     | 'failed'
     | 'finish'
     | 'cancel';
+}
+
+/* Firebase Token Types */
+export interface FirebaseTokenPayload {
+  assign_id: number;
+  push_token: string;
+}
+
+export interface PushMessage {
+  notification: {
+    title: string;
+    body: string;
+  };
+  data: {
+    status: string;
+  };
 }
