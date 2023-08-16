@@ -1,4 +1,3 @@
-import { UserStatus } from '@/utils/types/user';
 import UserApi from '@/utils/api/user';
 import { NavigateFunction } from 'react-router-dom';
 
@@ -82,7 +81,7 @@ async function CheckStatusChange(id: number, navigate: NavigateFunction) {
 
 const handleVisibilityChange = (
   ws_url: string,
-  id: UserStatus['id'],
+  id: number,
   navigate: NavigateFunction,
 ) => {
   if (document.hidden) {
@@ -100,10 +99,7 @@ const handleVisibilityChange = (
   }
 };
 
-export const initWebSocket = (
-  id: UserStatus['id'],
-  navigate: NavigateFunction,
-) => {
+export const initWebSocket = (id: number, navigate: NavigateFunction) => {
   const port_num = 443;
   const ws_url = `wss://${
     import.meta.env.VITE_BASE_URL

@@ -20,7 +20,10 @@ const Riding = () => {
   const location = useLocation();
 
   useEffect(() => {
-    if (['/waiting', '/success', '/riding'].includes(location.pathname)) {
+    if (
+      ['/waiting', '/success', '/riding'].includes(location.pathname) &&
+      UserStatus.id
+    ) {
       initWebSocket(UserStatus.id, navigate);
     }
     setUserStatus({ ...UserStatus, status: 'riding' });

@@ -22,7 +22,10 @@ const Success = () => {
   const location = useLocation();
 
   useEffect(() => {
-    if (['/waiting', '/success', '/riding'].includes(location.pathname)) {
+    if (
+      ['/waiting', '/success', '/riding'].includes(location.pathname) &&
+      UserStatus.id
+    ) {
       initWebSocket(UserStatus.id, navigate);
     }
     setUserStatus({ ...UserStatus, status: 'success' });
@@ -34,11 +37,13 @@ const Success = () => {
 
   const cancelModal = () => {
     console.log(UserStatus.id);
-    UserApi.postCancelBooking({ assign_id: UserStatus.id }).catch(
-      (error: Error) => console.error('Failed to cancel booking: ', error),
-    );
-    navigate('/cancel');
-    setIsModalOpen(false);
+    if (UserStatus.id) {
+      UserApi.postCancelBooking({ assign_id: UserStatus.id }).catch(
+        (error: Error) => console.error('Failed to cancel booking: ', error),
+      );
+      navigate('/cancel');
+      setIsModalOpen(false);
+    }
   };
   //전화 연결
 
