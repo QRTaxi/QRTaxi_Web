@@ -1,6 +1,5 @@
 import { initializeApp } from 'firebase/app';
 import { getMessaging, getToken, onMessage } from 'firebase/messaging';
-import { onBackgroundMessage } from 'firebase/messaging/sw';
 import UserApi from '@/utils/api/user';
 
 interface FirebaseConfig {
@@ -93,9 +92,6 @@ export const requestPermission = async (assign_id: number) => {
     );
 
     onMessage(messaging, payload => {
-      console.log('메시지가 도착했습니다.', payload);
-    });
-    onBackgroundMessage(messaging, payload => {
       console.log('메시지가 도착했습니다.', payload);
     });
   }
