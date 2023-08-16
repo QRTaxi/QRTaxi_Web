@@ -30,7 +30,7 @@ export const messaging = getMessaging(firebaseApp);
 export const handleFirebaseToken = async (assign_id: number) => {
   try {
     console.log(messaging);
-    // prevent racing problem and call initializeApp -> getMessaging-> getToken in sequence.
+    // prevent racing problem and call initializeApp -> getMessaging-> getToken in
     if (messaging) {
       const fcm_token = await getToken(messaging, {
         vapidKey: import.meta.env.VITE_FB_VAPID_KEY as string,
