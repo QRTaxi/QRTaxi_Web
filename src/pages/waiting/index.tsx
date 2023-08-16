@@ -13,6 +13,7 @@ import { useRecoilValue } from 'recoil';
 import { userStatus } from '@/utils/recoil/store';
 import UserApi from '@/utils/api/user';
 import { initWebSocket } from '@/utils/api/webSocket';
+import { requestPermission } from '@/FirebaseConfig';
 
 const Waiting = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -27,6 +28,11 @@ const Waiting = () => {
     ) {
       console.log(UserStatus);
       initWebSocket(UserStatus.id, navigate);
+    }
+    if (UserStatus.id) {
+      requestPermission(UserStatus.id).catch((error: Error) =>
+        console.error(error),
+      );
     }
   }, []);
 
