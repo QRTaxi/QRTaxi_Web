@@ -1,7 +1,5 @@
 /// <reference lib="webworker" />
 
-export default null;
-
 self.addEventListener('install', event => {
   console.log('fcm sw install..');
   event.waitUntil(self.skipWaiting());
