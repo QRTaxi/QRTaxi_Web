@@ -93,6 +93,7 @@ export const requestPermission = async (assign_id: number) => {
     const permission = await Notification.requestPermission();
     if (permission === 'denied') {
       console.log('알림 권한 허용 안됨');
+      alert('알림 권한을 허용해주세요!');
       return;
     } else {
       handleGranted(assign_id);
