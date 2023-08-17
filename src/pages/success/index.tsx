@@ -55,10 +55,6 @@ const Success = () => {
     setIsCallOpen(false);
   };
 
-  const makeCall = () => {
-    window.location.href = 'tel:01066511539';
-  };
-
   return driverInfo ? (
     'id' in driverInfo ? (
       <styles.FinishWrapper>
@@ -122,7 +118,9 @@ const Success = () => {
             text1="기사님과 전화 연결을 원하시면"
             text2="아래 통화 버튼을 누르세요"
             action="통화"
-            onAction={makeCall}
+            onAction={() => {
+              window.location.href = `tel:${driverInfo.driver_phone}`;
+            }}
           />
         </styles.ThirdSection>
       </styles.FinishWrapper>
