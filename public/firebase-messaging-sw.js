@@ -1,13 +1,16 @@
 /// <reference lib="webworker" />
 
-self.addEventListener('install', event => {
-  console.log('fcm sw install..');
-  event.waitUntil(self.skipWaiting());
-  // .catch((error: Error) => console.error(error))
+const consoleMessage = message => {
+  console.log(`Service Worker : ${message}`);
+};
+
+self.addEventListener('install', () => {
+  self.skipWaiting();
+  consoleMessage('INSTALL');
 });
 
 self.addEventListener('activate', () => {
-  console.log('fcm sw activate..');
+  consoleMessage('ACTIVE');
 });
 
 self.addEventListener('push', event => {
@@ -28,13 +31,23 @@ self.addEventListener('push', event => {
 });
 
 self.addEventListener('notificationclick', event => {
-  // Close the notification popout
   event.notification.close();
-  // Get all the Window clients
+  const targetUrl = event.notification.data.url;
+
   event.waitUntil(
     clients
-      .openWindow(event.notification.data.url)
-      .then(windowClient => (windowClient ? windowClient.focus() : null))
-      .catch(error => console.error(error)),
+      .matchAll({ type: 'window', includeUncontrolled: true })
+      .then(clientList => {
+        // 해당 URL의 탭이 이미 열려 있는지 확인
+        // If a Window tab matching the targeted URL already exists, focus that;
+        const hadWindowToFocus = clientList.some(windowClient =>
+          windowClient.url === targetUrl ? (windowClient.focus(), true) : false,
+        );
+        // Otherwise, open a new tab to the applicable URL and focus it.
+        if (!hadWindowToFocus)
+          clients
+            .openWindow(e.notification.data.url)
+            .then(windowClient => (windowClient ? windowClient.focus() : null));
+      }),
   );
 });
