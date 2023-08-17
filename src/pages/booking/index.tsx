@@ -24,6 +24,8 @@ import { theme } from '@/styles/theme';
 
 export async function Loader({ params }: { params: Params }) {
   const response = await UserApi.getUserLocation(params.qrID as string);
+  if (typeof response === 'number')
+    throw new Error(`${response}: 잘못된 QR코드입니다.`);
   return response;
 }
 

@@ -32,7 +32,7 @@ export const userLocationInfoState = selector<UserLocationInfo | null>({
     const info = get(userQRIDState);
     if (info) {
       const response = await UserApi.getUserLocation(info);
-      return response;
+      return typeof response !== 'number' ? response : null;
     }
     return null;
   },

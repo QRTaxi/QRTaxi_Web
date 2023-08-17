@@ -26,9 +26,9 @@ class UserApi {
       );
       return response.data;
     } catch (error) {
-      const axiosError = error as AxiosError<UserLocationResponse>;
+      const axiosError = error as AxiosError;
       if (axiosError.response) {
-        return axiosError.response.data;
+        return axiosError.response.status;
       } else {
         throw new Error();
       }
