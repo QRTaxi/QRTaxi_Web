@@ -1,20 +1,14 @@
 import { LogoSymbolWhite } from '@/assets/images';
 import * as styles from './LandingStyle';
 import { useNavigate } from 'react-router-dom';
-import { userPayloadState, userQRIDState } from '@/utils/recoil/store';
-import { useRecoilState, useSetRecoilState } from 'recoil';
 
 //import Lottie from 'lottie-react';
 //import { IcLandingTaxi1, IcLandingTaxi2 } from '@/assets/lottie';
 
 const Landing = () => {
-  const setUserQRIDState = useSetRecoilState(userQRIDState);
-  const [userPayload, setUserPayload] = useRecoilState(userPayloadState);
   const navigate = useNavigate();
 
   const handleNewAssign = () => {
-    setUserQRIDState(null);
-    setUserPayload({ ...userPayload, hashed_qr_id: '' });
     navigate('/booking/WvVRJ45LkK');
   };
 
