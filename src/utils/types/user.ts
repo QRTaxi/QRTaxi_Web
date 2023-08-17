@@ -39,6 +39,7 @@ export interface DriverInfoResponse {
     name: string;
     taxi_num: string;
     car_type: string;
+    driver_phone: string;
   };
   estimated_time: string;
 }
