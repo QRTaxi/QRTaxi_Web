@@ -33,14 +33,11 @@ export const getOrRegisterServiceWorker = () => {
     typeof window.navigator.serviceWorker !== 'undefined'
   ) {
     return window.navigator.serviceWorker
-      .getRegistration('/firebase-push-notification-scope')
+      .getRegistration()
       .then(serviceWorker => {
         if (serviceWorker) return serviceWorker;
         return window.navigator.serviceWorker.register(
           '/firebase-messaging-sw.js',
-          {
-            scope: '/firebase-push-notification-scope',
-          },
         );
       });
   }
@@ -50,14 +47,13 @@ export const getOrRegisterServiceWorker = () => {
 // getFirebaseToken function generates the FCM token
 export const handleFirebaseToken = async (assign_id: number) => {
   try {
-    console.log(messaging);
     // prevent racing problem and call initializeApp -> getMessaging-> getToken in sequences.
     if (messaging) {
-      const serviceWorkerRegistration = await getOrRegisterServiceWorker();
-      if (serviceWorkerRegistration) {
+      const registration = await getOrRegisterServiceWorker();
+      if (registration.active) {
         const fcm_token = await getToken(messaging, {
           vapidKey: import.meta.env.VITE_FB_VAPID_KEY as string,
-          serviceWorkerRegistration,
+          serviceWorkerRegistration: registration,
         });
         if (fcm_token && assign_id) {
           UserApi.postFirebaseToken({ assign_id, push_token: fcm_token })
@@ -93,6 +89,7 @@ export const requestPermission = async (assign_id: number) => {
     const permission = await Notification.requestPermission();
     if (permission === 'denied') {
       console.log('알림 권한 허용 안됨');
+      alert('알림 권한을 허용해주세요!');
       return;
     } else {
       handleGranted(assign_id);
