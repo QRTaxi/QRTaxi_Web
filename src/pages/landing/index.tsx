@@ -1,17 +1,15 @@
 import { LogoSymbolWhite } from '@/assets/images';
 import * as styles from './LandingStyle';
+import { useNavigate } from 'react-router-dom';
+
+//import Lottie from 'lottie-react';
+//import { IcLandingTaxi1, IcLandingTaxi2 } from '@/assets/lottie';
 
 const Landing = () => {
-  const handleCameraAppLaunch = () => {
-    if (navigator.userAgent.match(/iPhone|iPad|iPod/i)) {
-      // iOS인 경우
-      window.location.href = 'photos-redirect://'; // iOS 카메라 어플의 스킴을 사용
-    } else if (navigator.userAgent.match(/Android/i)) {
-      // Android인 경우
-      window.location.href = 'intent://camera#Intent;scheme=package_name;end'; // Android 카메라 어플의 스킴을 사용
-    } else {
-      console.error('Unsupported platform'); // 지원하지 않는 플랫폼인 경우 에러 메시지 출력
-    }
+  const navigate = useNavigate();
+
+  const handleNewAssign = () => {
+    navigate('/booking/WvVRJ45LkK');
   };
 
   return (
@@ -26,7 +24,7 @@ const Landing = () => {
         </styles.Contents>
       </styles.FirstSection>
       <styles.SecondSection>
-        <styles.CameraButton onClick={handleCameraAppLaunch}>
+        <styles.CameraButton onClick={handleNewAssign}>
           <LogoSymbolWhite />
         </styles.CameraButton>
         <styles.CamBtnDescription>
