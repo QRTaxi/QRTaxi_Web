@@ -47,7 +47,7 @@ const Landing = () => {
         </styles.CamBtnDescription>
 
         <styles.GuideDescription>
-          <styles.GuideTitle>🚨 심사 가이드</styles.GuideTitle>
+          <styles.GuideTitle>🚨 테스트 가이드</styles.GuideTitle>
           <styles.GuideBody>
             1. 원활한 테스트를 위해서 손님(웹)과 기사(앱)은{' '}
             <span>꼭 다른 디바이스에서</span> 테스트 해주세요.
