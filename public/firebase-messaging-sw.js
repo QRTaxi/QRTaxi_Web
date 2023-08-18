@@ -1,15 +1,34 @@
 /// <reference lib="webworker" />
 
+const _version = 'v1';
+const cacheName = 'v1';
+const cacheList = ['QRTaxi', 'PWA'];
 const consoleMessage = message => {
   console.log(`Service Worker : ${message}`);
 };
 
 self.addEventListener('install', () => {
   self.skipWaiting();
+  caches.open(cacheName).then(cache => {
+    consoleMessage('Caching APP');
+    return cache.addAll(cacheList);
+  });
   consoleMessage('INSTALL');
 });
 
 self.addEventListener('activate', () => {
+  event.waitUntil(
+    caches.keys().then(keyList =>
+      Promise.all(
+        keyList.map(key => {
+          if (key !== cacheName) {
+            consoleMessage('Removing old cache' + key);
+            return caches.delete(key);
+          }
+        }),
+      ),
+    ),
+  );
   consoleMessage('ACTIVE');
 });
 
