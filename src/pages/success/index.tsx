@@ -119,7 +119,7 @@ const Success = () => {
             text2="아래 통화 버튼을 누르세요"
             action="통화"
             onAction={() => {
-              window.location.href = `tel:${driverInfo.driver_phone}`;
+              window.location.href = `tel:${driverInfo.driver_id.driver_phone}`;
             }}
           />
         </styles.ThirdSection>
