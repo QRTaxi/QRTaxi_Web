@@ -63,6 +63,31 @@ export const bodyText = styled.p`
   ${({ theme }) => theme.fonts.QT_Subtitle2_Pretendard_Medium_18}
 `;
 
+export const GuideDescription = styled(ContentWrapper)`
+  color: ${({ theme }) => theme.colors.QT_Color_White};
+
+  margin-top: 3rem;
+  padding: 2rem;
+  border-radius: 1rem;
+  border: 1px solid white;
+`;
+
+export const GuideTitle = styled.p`
+  ${({ theme }) => theme.fonts.QT_Title1_Pretendard_Bold_24}
+`;
+
+export const GuideBody = styled(bodyText)`
+  line-height: 150%;
+  font-weight: 400;
+  & > span {
+    ${({ theme }) => theme.fonts.QT_Subtitle2_Pretendard_Medium_18}
+    font-weight: 900;
+  }
+  & > div {
+    ${({ theme }) => theme.fonts.QT_Title1_Pretendard_Bold_24}
+  }
+`;
+
 export const StepBlock = styled.section`
   display: flex;
   flex-direction: column;

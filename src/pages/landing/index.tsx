@@ -46,6 +46,36 @@ const Landing = () => {
           아래로 내려보세요!
         </styles.CamBtnDescription>
 
+        <styles.GuideDescription>
+          <styles.GuideTitle>🚨 심사 가이드</styles.GuideTitle>
+          <styles.GuideBody>
+            1. 원활한 테스트를 위해서 손님(웹)과 기사(앱)은{' '}
+            <span>꼭 다른 디바이스에서</span> 테스트 해주세요.
+          </styles.GuideBody>
+          <styles.GuideBody>
+            2. <span>기사앱에서 로그인</span>을 한 뒤,{' '}
+            <span>&apos;운행시작&apos;</span>을 눌러주세요.
+          </styles.GuideBody>
+          <styles.GuideBody>
+            3. 원래는 지정된 장소의 QR을 카메라로 스캔해야 하나,{' '}
+            <span>
+              웹 브라우저 정책상 웹에서 바로 카메라로 이동할 수 없어요.
+            </span>
+          </styles.GuideBody>
+          <styles.GuideBody>
+            4. 따라서 모바일일 경우{' '}
+            <span>카메라로 이동해서 발표자료의 QR을 스캔</span>하거나{' '}
+            <span>위의 QR 버튼을 눌러주세요.</span>
+          </styles.GuideBody>
+          <styles.GuideBody>
+            5. <span>데스크톱으로 테스트할 경우</span> 위의 QR을 눌러주세요.
+          </styles.GuideBody>
+          <styles.GuideBody>
+            <div>
+              6. 꼭 손님(웹)과 기사(앱)은 다른 디바이스에서 테스트해주세요!
+            </div>
+          </styles.GuideBody>
+        </styles.GuideDescription>
         <Lottie animationData={IcArrowDown} />
       </styles.SecondSection>
 
