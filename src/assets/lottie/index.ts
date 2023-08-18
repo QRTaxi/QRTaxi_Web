@@ -5,3 +5,8 @@ export { default as IcSadFace } from './IcSadFace.json';
 export { default as IcSuccess } from './IcSuccess.json';
 export { default as IcDriver } from './IcDriver.json';
 export { default as IcRiding } from './IcRiding.json';
+export { default as IcLandingTaxi1 } from './IcLandingTaxi1.json';
+export { default as IcLandingTaxi2 } from './IcLandingTaxi2.json';
+export { default as IcFingerClick } from './IcFingerClick.json';
+export { default as IcReadingQR } from './IcReadingQR.json';
+export { default as IcArrowDown } from './IcArrowDown.json';

@@ -13,3 +13,11 @@ export { ReactComponent as LogoInitialBlack } from './logo/QT_initial_v3.svg';
 export { ReactComponent as LogoSymbolOrange } from './logo/QT_symbol_v1.svg';
 export { ReactComponent as LogoSymbolWhite } from './logo/QT_symbol_v2.svg';
 export { ReactComponent as LogoSymbolBlack } from './logo/QT_symbol_v3.svg';
+export { ReactComponent as LogoWordmarkOrange } from './logo/QT_wordmark_v1.svg';
+export { ReactComponent as LogoLife } from './logo/QT_life_v1.svg';
+
+export { ReactComponent as CaptureBooking } from './capture/CaptureBooking.svg';
+export { ReactComponent as CaptureFinish } from './capture/CaptureFinish.svg';
+export { ReactComponent as CaptureRiding } from './capture/CaptureRiding.svg';
+export { ReactComponent as CaptureSuccess } from './capture/CaptureSuccess.svg';
+export { ReactComponent as CaptureWaiting } from './capture/CaptureWaiting.svg';
