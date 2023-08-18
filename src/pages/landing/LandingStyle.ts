@@ -1,39 +1,52 @@
 import { LayoutWrapper } from '@/components/common/Layout';
-import { styled } from 'styled-components';
+import styled, * as styledComponents from 'styled-components';
 
-export const LandingWrapper = styled(LayoutWrapper)`
-  display: flex;
-  flex-direction: column;
-
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
+const moveHorizontally = styledComponents.keyframes`
+  0% {
+    transform: translateX(70%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
 `;
 
-export const ContentWrapper = styled.section`
+export const LandingWrapper = styledComponents.styled(LayoutWrapper)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  background-color: black;
+`;
+
+export const ContentWrapper = styledComponents.styled.section`
   width: 100%;
   padding-left: 2.3rem;
   padding-right: 2.3rem;
+  background-color: black;
+  position: relative;
+  z-index: 1; /* Ensure that content is above the animation */
 `;
 
-export const FirstSection = styled(ContentWrapper)`
+export const FirstSection = styledComponents.styled(ContentWrapper)`
   display: flex;
   align-items: center;
-
-  margin-top: 7rem;
+  margin-top: 10rem;
+  background-color: black;
+  position: relative;
+  z-index: 1; /* Ensure that content is above the animation */
 `;
 
-export const SecondSection = styled(ContentWrapper)`
+export const SecondSection = styledComponents.styled(ContentWrapper)`
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  margin-bottom: 10rem;
-
-  gap: 5rem;
+  position: relative;
+  background-color: black;
+  z-index: 1; /* Ensure that content is above the animation */
 `;
 
-export const Contents = styled.header`
+export const Contents = styledComponents.styled.header`
   color: ${({ theme }) => theme.colors.QT_Color_Gray_Black};
 
   & > h1 {
@@ -43,7 +56,7 @@ export const Contents = styled.header`
   }
 `;
 
-export const CameraButton = styled.button`
+export const CameraButton = styledComponents.styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -71,7 +84,35 @@ export const CameraButton = styled.button`
   }
 `;
 
-export const CamBtnDescription = styled.p`
+export const CamBtnDescription = styledComponents.styled.p`
   ${({ theme }) => theme.fonts.QT_Body1_Pretendard_Medium_16}
   text-align: center;
+`;
+
+export const LottieTaxiSection = styledComponents.styled.div`
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  overflow: hidden; 
+  animation: ${moveHorizontally} 2s linear infinite;
+  
+
+  & > div {
+    width: 150%;
+  }
+`;
+
+export const LottieSection = styled.div`
+  display: flex;
+  justify-content: center;
+  background-color: black;
+
+  & > div {
+    width: 80%;
+  }
 `;
