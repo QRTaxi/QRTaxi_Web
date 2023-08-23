@@ -1,32 +1,97 @@
-# 🚖 QRTaxi - 큐택 웹
+<h1> 🚖 QR코드로 한 번에! 큐택 </h1>
 
-큐택은 QR코드로 택시를 호출할 수 있는 택시 호출 서비스입니다.
+<h3> 1️⃣ 큐택 사용방법</h3>
+
+<div><strong>큐택 QR코드만 스캔하세요!</strong> <br/> 전화번호만 입력하면 QR코드가 부착된 장소로 주변 택시에 호출 콜을 보내요.</div> <br/>
+
+![핵심기능 플로우1](https://github.com/QRTaxi/QRTaxi_Web/assets/87803596/0d9741a4-018c-49f2-a320-2830911c71e8)
+
+<h3> 2️⃣ 호출 후 플로우</h3>
+
+<div><strong>조금만 기다리시면 택시가 배정돼요.</strong> <br/> 이후엔 일반 택시를 이용하는 것처럼 이용하시면 돼요. 호출에 실패했더라도 다시 호출할 수 있어요!</div> <br/>
+
+![핵심기능 플로우2](https://github.com/QRTaxi/QRTaxi_Web/assets/87803596/cb2ad6cd-58d6-4848-93bd-8e62b9aca964)
 </br>
 
-## 🚖 큐택의 핵심 기능
+## 🚖 큐택 Web 구성원
 
-</br>
+<table align="center">
+    <tr align="center">
+        <td style="min-width: 150px;">
+            <a href="https://github.com/HiimKwak">
+              <img src="https://github.com/QRTaxi/QRTaxi_Web/assets/87803596/771a7c9f-a581-49f5-9163-977bbc9c6e0d" width="200">
+              <br />
+              <b>HiimKwak</b>
+            </a>
+        </td>
+        <td style="min-width: 150px;" background-color="white">
+            <a href="https://github.com/zizonyoungjun">
+              <img src="https://github.com/QRTaxi/QRTaxi_Web/assets/87803596/5de18e13-e128-46bb-a742-30f721c3501b" width="200">
+              <br />
+              <b>zizonyoungjun</b>
+            </a> 
+        </td>
+    </tr>
+    <tr align="center">
+        <td>
+            곽민규 <br/>
+            Web FE
+      </td>
+        <td>
+            한영준 <br />
+            Web FE
+        </td>
+    </tr>
+</table>
 
 ## 💻 기술 스택
 
-<div style='flex'>
-<img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=white" >
-<img src="https://img.shields.io/badge/typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=white">
-<img src="https://img.shields.io/badge/vite-646CFF?style=for-the-badge&logo=vite&logoColor=white">
+```
+  "dependencies": {
+    "axios": "^1.4.0",
+    "firebase": "^10.1.0",
 
-<img src="https://img.shields.io/badge/reactrouter-CA4245?style=for-the-badge&logo=reactrouter&logoColor=white">
-<img src="https://img.shields.io/badge/axios-5A29E4?style=for-the-badge&logo=axios&logoColor=white">
-<img src="https://img.shields.io/badge/recoil-3578E5?style=for-the-badge&logo=recoil&logoColor=white">
-<img src="https://img.shields.io/badge/reactquery-FF4154?style=for-the-badge&logo=reactquery&logoColor=white">
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.14.2",
 
-<img src="https://img.shields.io/badge/styledcomponents-DB7093?style=for-the-badge&logo=styledcomponents&logoColor=white">
-<img src="https://img.shields.io/badge/framer-0055FF?style=for-the-badge&logo=framer&logoColor=white">
+    "recoil": "^0.7.7",
+    "recoil-persist": "^5.1.0",
 
-</div>
+    "styled-components": "^6.0.5",
+    "lottie-react": "^2.4.0",
 
-## 🚖 구성원 및 역할분담
+    "vite-plugin-svgr": "^3.2.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.2",
+    "@types/react": "^18.2.15",
+    "@types/react-dom": "^18.2.7",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
 
-</br>
+    "eslint": "^8.45.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-typescript": "^17.1.0",
+    "eslint-config-prettier": "^8.9.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-prettier": "^5.0.0",
+    "eslint-plugin-react": "^7.33.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.3",
+
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.3",
+    "prettier": "^3.0.0",
+
+    "react-icons": "^4.10.1",
+
+    "vite": "^4.4.5",
+    "@vitejs/plugin-react-swc": "^3.3.2",
+    "vite-tsconfig-paths": "^4.2.0"
+  }
+```
 
 ## 📌 컨벤션
 
